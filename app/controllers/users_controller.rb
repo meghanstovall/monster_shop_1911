@@ -8,11 +8,14 @@ class UsersController < ApplicationController
     if user.valid?
       flash[:notice] = "#{user.name} is now logged in"
       redirect_to '/profile'
+    else
+      flash[:error] = "#{user.errors.full_messages.to_sentence}"
+      render :new
     end
   end
 
   def show
-    
+
   end
 
   private
