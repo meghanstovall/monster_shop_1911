@@ -1,6 +1,18 @@
 class UsersController < ApplicationController
+
   def new
-    @user = User.new(user_params)
+  end
+
+  def create
+    user = User.create(user_params)
+    if user.valid?
+      flash[:notice] = "#{user.name} is now logged in"
+      redirect_to '/profile'
+    end
+  end
+
+  def show
+    
   end
 
   private
