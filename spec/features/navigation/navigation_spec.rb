@@ -38,7 +38,8 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_link("Cart")
         expect(page).to have_link("Login")
         expect(page).to have_link("Register as New User")
-        # expect(page).to have_content("Cart: 0")
+        expect(page).to have_content("Cart: 0")
+        save_and_open_page
     end
   end
 end
