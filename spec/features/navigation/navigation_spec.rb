@@ -14,7 +14,7 @@ RSpec.describe 'Site Navigation' do
 		city = "Denver"
 		state = "Colorado"
 		zip = 80234
-		email = "ame@fake.com"
+		email = "strangerthings@gmail.com"
 		password = "BestFakerEver"
 		password_confirmation = "BestFakerEver"
 
@@ -39,7 +39,6 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_link("Login")
         expect(page).to have_link("Register as New User")
         expect(page).to have_content("Cart: 0")
-        save_and_open_page
     end
   end
 end
