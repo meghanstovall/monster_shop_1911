@@ -1,21 +1,22 @@
 class UsersController < ApplicationController
 
   def new
+    @user = User.new(user_params)
   end
 
   def create
-    user = User.create(user_params)
-    if user.valid?
-      flash[:notice] = "#{user.name} is now logged in"
+    # @user = User.new(user_params)
+    @user = User.create(user_params)
+    if @user.save
+      flash[:notice] = "#{@user.name} is now logged in"
       redirect_to '/profile'
     else
-      flash[:error] = "#{user.errors.full_messages.to_sentence}"
+      flash[:error] = "#{@user.errors.full_messages.to_sentence}"
       render :new
     end
   end
 
   def show
-
   end
 
   private
