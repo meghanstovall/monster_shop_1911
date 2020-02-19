@@ -9,16 +9,22 @@
   </head>
 
   <body>
-    <nav class = "topnav">
+
+    <nav class = "topnav" id="top-nav">
+      <%= link_to "Home", "/"%>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
+      <%= link_to "Register as New User", "/register" %>
+      <%= link_to "Login", "/login" %>
     </nav>
+
     <% flash.each do |name, msg| %>
       <div class= "<%=name%>-flash">
         <p><%= msg %></p>
       </div>
     <% end %>
     <%= yield %>
+
   </body>
 </html>
