@@ -15,8 +15,14 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-      <%= link_to "Register as New User", "/register" %>
-      <%= link_to "Login", "/login" %>
+      <% if current_user %>
+        <%= link_to "My Profile", "/profile" %>
+        <%= link_to "Logout", "/" %>
+        <p>Logged in as <%= current_user.name %></p>
+      <% else %>
+        <%= link_to "Register as New User", "/register" %>
+        <%= link_to "Login", "/login" %>
+      <% end %>
     </nav>
 
     <% flash.each do |name, msg| %>
