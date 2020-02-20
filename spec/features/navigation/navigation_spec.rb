@@ -96,7 +96,7 @@ RSpec.describe 'Site Navigation' do
     fill_in :password, with: "geniessuck"
 
     click_button "Log In"
-save_and_open_page
+
     expect(page).to have_link("Admin Dashboard")
     expect(page).to have_link("All Users")
     expect(page).to have_link("Logout")
