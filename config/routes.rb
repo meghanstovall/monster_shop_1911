@@ -42,6 +42,16 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
 
-  get '/merchant/dashboard', to: 'dashboards#show'
-  get '/admin/dashboard', to: 'dashboards#show'
+  # get '/merchant/dashboard', to: 'dashboards#show'
+  # get '/admin/dashboard', to: 'dashboards#show'
+
+  namespace :merchant do
+  #only admin users will be able to reach this resource
+  get '/dashboard', to: "dashboard#show"
+end
+
+  namespace :admin do
+  #only admin users will be able to reach this resource
+    get '/dashboard', to: "dashboard#show"
+  end
 end
