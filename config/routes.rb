@@ -42,6 +42,15 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
 
-  get '/merchant/dashboard', to: 'dashboards#show'
-  get '/admin/dashboard', to: 'dashboards#show'
+  # get '/merchant/dashboard', to: 'dashboards#show'
+  # get '/admin/dashboard', to: 'dashboards#show'
+
+  namespace :admin do
+    get '/dashboard', to: 'dashboards#show'
+  end
+
+  namespace :merchant do
+    get '/dashboard', to: 'dashboards#show'
+  end
+
 end
