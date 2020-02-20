@@ -96,7 +96,7 @@ RSpec.describe 'Site Navigation' do
     fill_in :password, with: "geniessuck"
 
     click_button "Log In"
-save_and_open_page
+
     expect(page).to have_link("Admin Dashboard")
     expect(page).to have_link("All Users")
     expect(page).to have_link("Logout")
@@ -104,7 +104,32 @@ save_and_open_page
     expect(page).to_not have_link("Register")
     expect(page).to_not have_link("Cart")
   end
+
+  describe "When I try to access any path that begins with /merchant, /admin, /profile" do
+    it "I see a 404 error for /merchant" do
+      visit '/merchant/dashboard'
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+
+    it "I see a 404 error for /admin" do
+      visit '/admin/dashboard'
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+
+    it "I see a 404 error for /profile" do
+      visit '/profile'
+      expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    end
+  end
 end
+
+# User Story 6, Visitor Navigation Restrictions
+#
+# As a visitor
+# When I try to access any path that begins with the following, then I see a 404 error:
+# - '/merchant'
+# - '/admin'
+# - '/profile'
 
 
 # User Story 5, Admin Navigation
