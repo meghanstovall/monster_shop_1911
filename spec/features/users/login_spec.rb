@@ -31,6 +31,7 @@ RSpec.describe "different users login" do
       expect(page).to have_content(@regular_user.email)
       expect(page).to have_content("#{@regular_user.name} is logged in.")
     end
+  end
 
     it 'logs in as a merchant user' do
       click_link 'Login'
@@ -53,7 +54,7 @@ RSpec.describe "different users login" do
 
       expect(current_path).to eq('/admin/dashboard')
     end
-  end
+
 
   it "cannot log in with incorrect credentials" do
     visit '/login'
@@ -62,5 +63,44 @@ RSpec.describe "different users login" do
     click_button "Log In"
     expect(current_path).to eq("/login")
     expect(page).to have_content("Login Failed; Your Credentials were Incorrect")
+  end
+
+  it "cannot access /login as regular user if regular user is already logged in" do
+
+    click_link 'Login'
+    expect(current_path).to eq('/login')
+    fill_in :email, with: @regular_user.email
+    fill_in :password, with: 'hamburger1'
+    click_button 'Log In'
+    expect(current_path).to eq('/profile')
+    visit '/login'
+    expect(current_path).to eq('/profile')
+    expect(page).to have_content("Already logged in as #{@regular_user.name}")
+  end
+
+  it "cannot access /login as  merchant if  merchant_user is already logged in" do
+
+    click_link 'Login'
+    expect(current_path).to eq('/login')
+    fill_in :email, with: @merchant_user.email
+    fill_in :password, with: 'hamburger2'
+    click_button 'Log In'
+    expect(current_path).to eq('/merchant/dashboard')
+    visit '/login'
+    expect(current_path).to eq('/merchant/dashboard')
+    expect(page).to have_content("Already logged in as #{@merchant_user.name}")
+  end
+
+  it "cannot access /login as admi user if admin user is already logged in" do
+
+    click_link 'Login'
+    expect(current_path).to eq('/login')
+    fill_in :email, with: @admin_user.email
+    fill_in :password, with: 'hamburger3'
+    click_button 'Log In'
+    expect(current_path).to eq('/admin/dashboard')
+    visit '/login'
+    expect(current_path).to eq('/admin/dashboard')
+    expect(page).to have_content("Already logged in as #{@admin_user.name}")
   end
 end
