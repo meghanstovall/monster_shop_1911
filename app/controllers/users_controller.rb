@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    require_user
   end
 
   private
@@ -33,4 +34,8 @@ class UsersController < ApplicationController
       :password,
       :password_confirmation)
   end
+
+    def require_user
+      render file: "/public/404" unless current_user
+    end
 end
