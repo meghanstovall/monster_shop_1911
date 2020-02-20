@@ -121,7 +121,79 @@ RSpec.describe 'Site Navigation' do
       expect(page).to have_content("The page you were looking for doesn't exist (404)")
     end
   end
+
+  it "default user cannot se admin or merchant dashboards" do
+    visit '/'
+    click_link 'Register'
+
+    expect(current_path).to eq("/register")
+
+    name = "Happy Gilmore"
+    street_address = "45433 Fake st."
+    city = "Denver"
+    state = "Colorado"
+    zip = 80234
+    email = "strangerthings@gmail.com"
+    password = "BestFakerEver"
+    password_confirmation = "BestFakerEver"
+
+    fill_in :name, with: name
+    fill_in :street_address, with: street_address
+    fill_in :city, with: city
+    fill_in :state, with: state
+    fill_in :zip, with: zip
+    fill_in :email, with: email
+    fill_in :password, with: password
+    fill_in :password_confirmation, with: password_confirmation
+
+    click_on 'Create User'
+
+    expect(page).to have_content("Logged in as Happy Gilmore")
+    expect(page).to have_link("My Profile")
+
+    visit '/merchant/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+
+    visit '/admin/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+  end
+
+  it "merchant cannot see admin dashboard" do
+    merchant_1 = User.create!(
+      name: "Jaffar",
+      street_address: "789 Palace Street",
+      city: "Detroit",
+      state: "AZ",
+      zip: 98345,
+      email: "jaffar@gamil.com",
+      password: "geniessuck",
+      role: 2
+     )
+
+    visit '/login'
+
+    fill_in :email, with: "jaffar@gamil.com"
+    fill_in :password, with: "geniessuck"
+
+    click_button "Log In"
+
+    visit '/admin/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+  end
 end
+
+# User Story 8, Merchant Navigation Restrictions
+#
+# As a merchant employee
+# When I try to access any path that begins with the following, then I see a 404 error:
+# - '/admin'
+
+# User Story 7, User Navigation Restrictions
+#
+# As a default user
+# When I try to access any path that begins with the following, then I see a 404 error:
+# - '/merchant'
+# - '/admin'
 
 # User Story 6, Visitor Navigation Restrictions
 #
