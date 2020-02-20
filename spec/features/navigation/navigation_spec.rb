@@ -180,6 +180,31 @@ RSpec.describe 'Site Navigation' do
     visit '/admin/dashboard'
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
   end
+
+  it "restricts what an admin can see" do
+    admin_1 = User.create!(
+      name: "Jaffar",
+      street_address: "789 Palace Street",
+      city: "Detroit",
+      state: "AZ",
+      zip: 98345,
+      email: "jaffar@gamil.com",
+      password: "geniessuck",
+      role: 3
+     )
+
+    visit '/login'
+
+    fill_in :email, with: "jaffar@gamil.com"
+    fill_in :password, with: "geniessuck"
+
+    click_button "Log In"
+    
+    visit '/merchant/dashboard'
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+    visit '/cart'
+    expect(page).to have_content("The page you were looking for doesn't exist (404)")
+  end
 end
 
 # User Story 8, Merchant Navigation Restrictions
