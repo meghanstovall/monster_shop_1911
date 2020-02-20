@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 
   def show
     require_user
+    if session[:user_id]
+      @user = User.find(session[:user_id]) 
+      flash[:success] = "#{@user.name} is logged in."
+    end
   end
 
   private

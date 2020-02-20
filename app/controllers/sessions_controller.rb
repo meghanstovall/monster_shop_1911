@@ -4,15 +4,27 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    # require "pry"; binding.pry
     if user != nil && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.name}!"
+      login_process(user)
+    else
+      flash[:notice] = "Login Failed; Your Credentials were Incorrect"
+      render :new
     end
-    if user.merchant?
+  end
+
+  private
+
+  def login_process(user)
+    if user.default?
+      redirect_to '/profile'
+    elsif user.merchant?
       redirect_to '/merchant/dashboard'
     elsif user.admin?
       redirect_to '/admin/dashboard'
     end
+    session[:user_id] = user.id
+    flash[:success] = "Welcome, #{user.name}!"
   end
+
+
 end
