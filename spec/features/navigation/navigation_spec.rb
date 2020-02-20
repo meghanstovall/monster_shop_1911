@@ -76,7 +76,47 @@ RSpec.describe 'Site Navigation' do
     expect(page).to_not have_link("Login")
     expect(page).to_not have_link("Register")
   end
+
+  it "shows different things in the navbar for admin" do
+
+    admin_1 = User.create!(
+      name: "Jaffar",
+      street_address: "789 Palace Street",
+      city: "Detroit",
+      state: "AZ",
+      zip: 98345,
+      email: "jaffar@gamil.com",
+      password: "geniessuck",
+      role: 3
+     )
+
+    visit '/login'
+
+    fill_in :email, with: "jaffar@gamil.com"
+    fill_in :password, with: "geniessuck"
+
+    click_button "Log In"
+save_and_open_page
+    expect(page).to have_link("Admin Dashboard")
+    expect(page).to have_link("All Users")
+    expect(page).to have_link("Logout")
+    expect(page).to_not have_link("Login")
+    expect(page).to_not have_link("Register")
+    expect(page).to_not have_link("Cart")
+  end
 end
+
+
+# User Story 5, Admin Navigation
+#
+# As an admin
+# I see the same links as a regular user
+# Plus the following links
+# - a link to my admin dashboard ("/admin")
+# - a link to see all users ("/admin/users")
+#
+# Minus the following links/info
+# - a link to my shopping cart ("/cart") or count of cart items
 
 # User Story 4, Merchant Navigation
 #

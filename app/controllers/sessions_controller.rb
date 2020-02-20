@@ -11,6 +11,8 @@ class SessionsController < ApplicationController
     end
     if user.merchant?
       redirect_to '/merchant/dashboard'
+    elsif user.admin?
+      redirect_to '/admin/dashboard'
     end
   end
 end
