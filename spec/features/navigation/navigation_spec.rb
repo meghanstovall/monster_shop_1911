@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Site Navigation' do
 
   it 'shows this information from the nav bar' do
+
   visit '/'
       within('#top-nav') do
         expect(page).to have_link("Home")
@@ -47,8 +48,42 @@ RSpec.describe 'Site Navigation' do
 
     expect(page).to have_link("Logout")
     expect(page).to_not have_link("Login")
+    expect(page).to_not have_link("Register")
+  end
+
+  it "shows different things in the navbar for merchants" do
+
+    merchant_1 = User.create!(
+      name: "Aladdin",
+      street_address: "456 Colorado Street",
+      city: "Phoenix",
+      state: "CA",
+      zip: 98765,
+      email: "aladdin@gamil.com",
+      password: "drowssap",
+      role: 2
+     )
+
+    visit '/login'
+
+    fill_in :email, with: "aladdin@gamil.com"
+    fill_in :password, with: "drowssap"
+
+    click_button "Log In"
+
+    expect(page).to have_link("Merchant Dashboard")
+    expect(page).to have_link("Logout")
+    expect(page).to_not have_link("Login")
+    expect(page).to_not have_link("Register")
   end
 end
+
+# User Story 4, Merchant Navigation
+#
+# As a merchant employee
+# I see the same links as a regular user
+# Plus the following links:
+# - a link to my merchant dashboard ("/merchant")
 
 
 # User Story 3, User Navigation
