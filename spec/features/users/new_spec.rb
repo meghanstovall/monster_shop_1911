@@ -1,6 +1,7 @@
 require "rails_helper"
 
 describe 'new user' do
+  User.destroy_all
 	it 'I should be able to register as a new user' do
 
 		visit '/'
