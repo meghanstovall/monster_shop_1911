@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   post '/register', to: 'users#create'
 
   get "/profile", to: 'users#show'
+  get "/profile/:profile_id/edit", to: "users#edit"
+  patch '/profile', to: 'users#update'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/', to: 'sessions#destroy'
