@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    # @user = User.new(user_params)
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -31,9 +30,14 @@ class UsersController < ApplicationController
 
   def update
     user = User.find(session[:user_id])
-    user.update!(user_params)
-    flash[:sucess] = "Changes Made to Profile Successfully"
-    redirect_to '/profile'
+    user.update(user_params)
+    if user.save
+      flash[:sucess] = "Changes Made to Profile Successfully"
+      redirect_to '/profile'
+    else
+      flash[:error] = "#{user.errors.full_messages.to_sentence}"
+      redirect_to "/profile/#{user.id}/edit"
+    end
   end
 
   def edit_password
