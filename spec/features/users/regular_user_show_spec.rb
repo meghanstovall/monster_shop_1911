@@ -16,7 +16,7 @@ RSpec.describe 'as a regular user' do
     fill_in :email, with: @regular_user.email
     fill_in :password, with: 'hamburger1'
     click_button 'Log In'
-    end
+  end
 
   it 'I visit my show page and see all info and a link to edit ' do
     expect(current_path).to eq('/profile')
@@ -26,6 +26,7 @@ RSpec.describe 'as a regular user' do
     expect(page).to have_content(@regular_user.state)
     expect(page).to have_content(@regular_user.zip)
     expect(page).to have_content(@regular_user.email)
+
     expect(page).to have_link('Edit Profile')
     expect(page).to_not have_content('hamburger1')
   end
@@ -46,4 +47,23 @@ RSpec.describe 'as a regular user' do
     expect(page).to_not have_content(@regular_user.name)
     expect(page).to have_content("Changes Made to Profile Successfully")
   end
+
+  it "has link to edit password and ability to change password" do
+    click_link "Edit Password"
+
+    expect(current_path).to eq("/profile/#{@regular_user.id}/edit_password")
+    fill_in :password, with: 'newPassword2'
+    fill_in :password_confirmation, with: 'newPassword2'
+    click_button 'Submit'
+    expect(current_path).to eq("/profile")
+    expect(page).to have_content("Password Updated Successfully")
+
+    click_link "Edit Password"
+    fill_in :password, with: 'newPassword2'
+    fill_in :password_confirmation, with: 'newPassword5'
+    click_button 'Submit'
+    expect(current_path).to eq("/profile/#{@regular_user.id}/edit_password")
+    expect(page).to have_content("Passwords must match!")
+  end
+
 end
