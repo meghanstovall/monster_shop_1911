@@ -40,13 +40,15 @@ Rails.application.routes.draw do
 
   get "/profile", to: 'users#show'
   get "/profile/:profile_id/edit", to: "users#edit"
+
+  get "/profile/:profile_id/edit_password", to: 'users#edit_password'
+  patch "/profile/:profile_id", to: 'users#update_password'
+
   patch '/profile', to: 'users#update'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/', to: 'sessions#destroy'
 
-  # get '/merchant/dashboard', to: 'dashboards#show'
-  # get '/admin/dashboard', to: 'dashboards#show'
 
   namespace :merchant do
   #only admin users will be able to reach this resource
