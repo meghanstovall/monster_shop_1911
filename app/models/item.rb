@@ -1,4 +1,4 @@
-class Item <ApplicationRecord
+class Item < ApplicationRecord
   belongs_to :merchant
   has_many :reviews, dependent: :destroy
   has_many :item_orders
@@ -25,4 +25,19 @@ class Item <ApplicationRecord
     item_orders.empty?
   end
 
+  def self.most_popular
+    joins(:item_orders)
+    .select('items.* sum, sum(item_orders.quantity) as quantity')
+    .group(:id)
+    .order('quantity desc')
+    .limit(5).to_a
+  end
+
+  def self.least_popular
+    joins(:item_orders)
+    .select('items.* sum, sum(item_orders.quantity) as quantity')
+    .group(:id)
+    .order('quantity')
+    .limit(5).to_a
+  end
 end
