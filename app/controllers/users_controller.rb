@@ -30,11 +30,25 @@ class UsersController < ApplicationController
   end
 
   def update
-    # require "pry"; binding.pry
     user = User.find(session[:user_id])
     user.update!(user_params)
     flash[:sucess] = "Changes Made to Profile Successfully"
     redirect_to '/profile'
+  end
+
+  def edit_password
+    @user = User.find(session[:user_id])
+  end
+
+  def update_password
+    user = User.find(session[:user_id])
+    if user.update(user_params)
+      flash[:sucess] = "Password Updated Successfully"
+      redirect_to '/profile'
+    else
+      flash[:failure] = "Passwords must match!"
+      redirect_to "/profile/#{user.id}/edit_password"
+    end
   end
 
   private
