@@ -24,7 +24,6 @@ class SessionsController < ApplicationController
 
   def login_process(user)
     if user.default?
-      # require "pry"; binding.pry
       redirect_to '/profile'
     elsif user.merchant?
       redirect_to '/merchant/dashboard'

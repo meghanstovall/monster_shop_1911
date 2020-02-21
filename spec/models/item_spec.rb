@@ -70,7 +70,7 @@ describe Item, type: :model do
       @pull_toy_order = ItemOrder.create(order_id: @order_2.id, item_id: @pull_toy.id, price: 10, quantity: 5)
       @dog_bone_order = ItemOrder.create(order_id: @order_1.id, item_id: @dog_bone.id, price: 8, quantity: 4)
       @dog_bed_order = ItemOrder.create(order_id: @order_2.id, item_id: @dog_bed.id, price: 15, quantity: 3)
-      @dog_dish_order = ItemOrder.create(order_id: @order_2.id, item_id: @dog_dish.id, price: 5, quantity: 3)
+      @dog_dish_order = ItemOrder.create(order_id: @order_2.id, item_id: @dog_dish.id, price: 5, quantity: 2)
     end
 
     it "can find most popular items" do

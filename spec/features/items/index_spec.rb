@@ -78,7 +78,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content(@tire.name)
         expect(page).to have_css("img[src*='#{@tire.image}']")
 
-        find(:xpath, "//a/img[@alt='#{@tire.name}']/..").click
+        find(:xpath, "//a/img[@alt='#{@tire.id}']/..").click
         expect(current_path).to eq("/items/#{@tire.id}")
       end
 
@@ -88,7 +88,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content(@pull_toy.name)
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
 
-        find(:xpath, "//a/img[@alt='#{@pull_toy.name}']/..").click
+        find(:xpath, "//a/img[@alt='#{@pull_toy.id}']/..").click
         expect(current_path).to eq("/items/#{@pull_toy.id}")
       end
 
@@ -98,7 +98,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content(@dog_bone.name)
         expect(page).to have_css("img[src*='#{@dog_bone.image}']")
 
-        find(:xpath, "//a/img[@alt='#{@dog_bone.name}']/..").click
+        find(:xpath, "//a/img[@alt='#{@dog_bone.id}']/..").click
         expect(current_path).to eq("/items/#{@dog_bone.id}")
       end
     end

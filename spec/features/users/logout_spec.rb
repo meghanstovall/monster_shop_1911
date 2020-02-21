@@ -15,7 +15,7 @@ RSpec.describe "different users login" do
 
 
     @dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
-    @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+    @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 
     visit '/'
   end
@@ -48,7 +48,10 @@ RSpec.describe "different users login" do
     click_button 'Log In'
 
     click_link "All Items"
-    click_link "Pull Toy"
+
+    within "#item-#{@pull_toy.id}" do
+      click_link "Pull Toy"
+    end
     click_button "Add To Cart"
     expect(page).to have_content("Cart: 1")
 
