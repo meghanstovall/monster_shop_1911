@@ -20,9 +20,21 @@ class UsersController < ApplicationController
   def show
     require_user
     if session[:user_id]
-      @user = User.find(session[:user_id]) 
+      @user = User.find(session[:user_id])
       flash[:success] = "#{@user.name} is logged in."
     end
+  end
+
+  def edit
+   @user = User.find(params[:profile_id])
+  end
+
+  def update
+    # require "pry"; binding.pry
+    user = User.find(session[:user_id])
+    user.update!(user_params)
+    flash[:sucess] = "Changes Made to Profile Successfully"
+    redirect_to '/profile'
   end
 
   private
