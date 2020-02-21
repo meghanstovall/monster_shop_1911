@@ -48,4 +48,37 @@ describe Item, type: :model do
       expect(@chain.no_orders?).to eq(false)
     end
   end
+
+  describe "class methods" do
+    before(:each) do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
+      @tire = @meg.items.create(name: "Tire", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @tire_pump = @meg.items.create(name: "Tire Pump", description: "They'll love it!", price: 8, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @bike_seat = @meg.items.create(name: "Bike Shop", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+      @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 8, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @dog_bed = @brian.items.create(name: "Dog Bed", description: "They'll love it!", price: 15, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+      @dog_dish = @brian.items.create(name: "Dog Dish", description: "They'll love it!", price: 5, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+
+      @order_1 = Order.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+      @order_2 = Order.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+
+      @tire_order = ItemOrder.create(order_id: @order_1.id, item_id: @tire.id, price: 100, quantity: 8)
+      @tire_pump_order = ItemOrder.create(order_id: @order_1.id, item_id: @tire_pump.id, price: 8, quantity: 7)
+      @bike_seat_order = ItemOrder.create(order_id: @order_2.id, item_id: @bike_seat.id, price: 21, quantity: 6)
+      @pull_toy_order = ItemOrder.create(order_id: @order_2.id, item_id: @pull_toy.id, price: 10, quantity: 5)
+      @dog_bone_order = ItemOrder.create(order_id: @order_1.id, item_id: @dog_bone.id, price: 8, quantity: 4)
+      @dog_bed_order = ItemOrder.create(order_id: @order_2.id, item_id: @dog_bed.id, price: 15, quantity: 3)
+      @dog_dish_order = ItemOrder.create(order_id: @order_2.id, item_id: @dog_dish.id, price: 5, quantity: 3)
+    end
+
+    it "can find most popular items" do
+      expect(Item.most_popular).to eq([@tire, @tire_pump, @bike_seat, @pull_toy, @dog_bone])
+    end
+
+    it "can find least popular items" do
+      expect(Item.least_popular).to eq([@dog_dish, @dog_bed, @dog_bone, @pull_toy, @bike_seat])
+    end
+  end
 end
