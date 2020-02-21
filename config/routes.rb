@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   get "/profile", to: 'users#show'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
+  delete '/', to: 'sessions#destroy'
 
   # get '/merchant/dashboard', to: 'dashboards#show'
   # get '/admin/dashboard', to: 'dashboards#show'
