@@ -53,8 +53,18 @@ RSpec.describe "orders index page" do
       expect(page).to have_content(@paper_order.quantity)
       expect(page).to have_content(@paper.price)
       expect(page).to have_content(@paper_order.subtotal)
-    end  
+    end
   end
 
+  scenario "can cancel an order" do
+    visit "/profile/orders/#{@user_order.id}"
+    click_button 'Cancel'
+
+    expect(current_path).to eq('/profile')
+    expect(page).to have_content('Order has been canceled.')
+    within "#order-#{@user_order.id}" do
+      expect(page).to have_content('cancelled')
+    end
+  end
 
 end
