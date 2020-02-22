@@ -22,10 +22,28 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
+  def edit_quantity
+    adjust_quantity
+  end
+
   private
 
   def require_not_admin
       render file: "/public/404" if current_admin
+  end
+
+  def item
+    @item = Item.find(params[:item_id])
+  end
+
+  def adjust_quantity
+    if params[:quantity] == "add" && item.inventory > session[:cart][params[:item_id]]
+      session[:cart][params[:item_id]] += 1
+      redirect_to '/cart'
+    else params[:quantity] == "add"
+      flash[:error] = "Out of Stock"
+      redirect_to '/cart'
+    end
   end
 
   # def increment_decrement
