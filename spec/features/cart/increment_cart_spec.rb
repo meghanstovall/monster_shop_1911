@@ -83,26 +83,12 @@ RSpec.describe 'Cart inrementation' do
         click_on '-'
         expect(current_path).to eq('/cart')
       end
-
+      
       expect(page).to have_content("Item has been removed from the cart")
       expect(page).not_to have_css("cart-item-#{@paper.id}")
     end
+
+    it 'I see information telling me I must register or log in to finish checking out' do
+      expect(page).to have_content("Warning: You must register or log in to finish the checkout process")
+    end
   end
-
-  # User Story 24, Decreasing Item Quantity from Cart
-  #
-  # As a visitor
-  # When I have items in my cart
-  # And I visit my cart
-  # Next to each item in my cart
-  # I see a button or link to decrement the count of items I want to purchase
-  # If I decrement the count to 0 the item is immediately removed from my cart
-
-  # User Story 23, Adding Item Quantity to Cart
-
-  # As a visitor
-  # When I have items in my cart
-  # And I visit my cart
-  # Next to each item in my cart
-  # I see a button or link to increment the count of items I want to purchase
-  # I cannot increment the count beyond the item's inventory size
