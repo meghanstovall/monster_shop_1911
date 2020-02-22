@@ -27,6 +27,43 @@ RSpec.describe 'Cart show' do
 
       expect(current_path).to eq("/orders/new")
     end
+
+    it "creates order after checking out and sees flash message" do
+      tim = User.create!(name: 'Tim',
+                      street_address: '123 Turing St',
+                      city: 'Denver',
+                      state: 'CO',
+                      zip: '80020',
+                      email: 'tim@gmail.com',
+                      password: 'password1',
+                      password_confirmation: "password1",
+                      role: 1)
+
+      click_link "Login"
+
+      fill_in :email, with: tim.email
+      fill_in :password, with: tim.password
+      click_button "Log In"
+
+      click_link "Cart: 3"
+      click_link "Checkout"
+
+      fill_in :name, with: tim.name
+      fill_in :address, with: tim.street_address
+      fill_in :city, with: tim.city
+      fill_in :state, with: tim.state
+      fill_in :zip, with: tim.zip
+      click_button "Create Order"
+
+      new_order = Order.last
+
+      expect(tim.orders).to eq([new_order])
+      expect(new_order.status).to eq('pending')
+
+      expect(current_path).to eq("/profile/orders")
+      expect(page).to have_content("Your order has been placed!")
+      expect(page).to have_link("Cart: 0")
+    end
   end
 
   describe 'When I havent added items to my cart' do
