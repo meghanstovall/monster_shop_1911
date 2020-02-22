@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20200222172854) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "status"
+    t.string "status", default: "pending"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20200222172854) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role", default: 0
+    t.integer "role", default: 1
   end
 
   add_foreign_key "item_orders", "items"
