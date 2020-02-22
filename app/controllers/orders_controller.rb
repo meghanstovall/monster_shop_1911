@@ -35,6 +35,10 @@ class OrdersController <ApplicationController
     @user = current_user
   end
 
+  def update
+    order = Order.find(params[:id])
+  end
+
   private
 
   def order_params
