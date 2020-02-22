@@ -87,22 +87,38 @@ RSpec.describe 'Cart inrementation' do
       expect(page).to have_content("Item has been removed from the cart")
       expect(page).not_to have_css("cart-item-#{@paper.id}")
     end
+
+    it 'I see information telling me I must register or log in to finish checking out' do
+      expect(page).to have_content("Warning: You must register or log in to finish the checkout process")
+    end
+
+    it "Does not show warning message if logged in" do
+      mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      paper = mike.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)
+      regular_user = User.create!(name: "Mike",
+                                  street_address: "456 Logan St. Denver, CO",
+                                  city: "denver",state: "CO",
+                                  zip: "80206",
+                                  email: "new_email1@gmail.com",
+                                  password: "hamburger1",
+                                  role: 1)
+      visit '/'
+      click_link 'Login'
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: regular_user.email
+      fill_in :password, with: 'hamburger1'
+      click_button 'Log In'
+
+      visit "/items/#{paper.id}"
+      click_on "Add To Cart"
+      visit '/cart'
+
+      within "#item-quantity-#{paper.id}" do
+        expect(page).to have_content("1")
+        save_and_open_page
+      end
+
+      expect(page).to_not have_content("Warning: You must register or log in to finish the checkout process")
+    end
   end
-
-  # User Story 24, Decreasing Item Quantity from Cart
-  #
-  # As a visitor
-  # When I have items in my cart
-  # And I visit my cart
-  # Next to each item in my cart
-  # I see a button or link to decrement the count of items I want to purchase
-  # If I decrement the count to 0 the item is immediately removed from my cart
-
-  # User Story 23, Adding Item Quantity to Cart
-
-  # As a visitor
-  # When I have items in my cart
-  # And I visit my cart
-  # Next to each item in my cart
-  # I see a button or link to increment the count of items I want to purchase
-  # I cannot increment the count beyond the item's inventory size
