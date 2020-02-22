@@ -48,25 +48,26 @@ RSpec.describe "As a visitor" do
       visit "/cart"
       click_on "Checkout"
 
-      name = "Bert"
-      address = "123 Sesame St."
-      city = "NYC"
-      state = "New York"
-      zip = 10001
+      user = User.create(name: "Bert",
+                        street_address: "123 Sesame St.",
+                        city: "NYC",
+                        state: "New York",
+                        zip: 10001,
+                        email: "bert@gmail.com",
+                        password: "password1",
+                        password_confirmation: "password1",
+                        role: 1)
 
-      fill_in :name, with: name
-      fill_in :address, with: address
-      fill_in :city, with: city
-      fill_in :state, with: state
-      fill_in :zip, with: zip
+      fill_in :name, with: user.name
+      fill_in :address, with: user.street_address
+      fill_in :city, with: user.city
+      fill_in :state, with: user.state
+      fill_in :zip, with: user.zip
 
       click_button "Create Order"
 
       visit "/merchants/#{meg.id}"
       expect(page).to_not have_link("Delete Merchant")
-
-      # visit "/merchants/#{brian.id}"
-      # expect(page).to have_link("Delete Merchant")
     end
   end
 end
