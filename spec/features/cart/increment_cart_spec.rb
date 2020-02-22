@@ -19,12 +19,12 @@ RSpec.describe 'Cart inrementation' do
 
       within "#cart-item-#{@paper.id}" do
         expect(page).to have_link('+')
-        # expect(page).to have_link('-')
+        expect(page).to have_link('-')
       end
 
       within "#cart-item-#{@pencil.id}" do
         expect(page).to have_link('+')
-        # expect(page).to have_link('-')
+        expect(page).to have_link('-')
       end
     end
 
@@ -57,9 +57,46 @@ RSpec.describe 'Cart inrementation' do
 
       expect(current_path).to eq('/cart')
       expect(page).to have_content("Out of Stock")
-      # save_and_open_page
+    end
+
+    it 'I can decrement the item until it is removed from my cart' do
+
+      within "#item-quantity-#{@paper.id}" do
+        expect(page).to have_content("1")
+      end
+
+      within "#cart-item-#{@paper.id}" do
+        click_on '+'
+      end
+
+      within "#item-quantity-#{@paper.id}" do
+        expect(page).to have_content("2")
+      end
+
+      within "#cart-item-#{@paper.id}" do
+        click_on '-'
+        expect(current_path).to eq('/cart')
+        expect(page).to have_content("1")
+      end
+
+      within "#cart-item-#{@paper.id}" do
+        click_on '-'
+        expect(current_path).to eq('/cart')
+      end
+
+      expect(page).to have_content("Item has been removed from the cart")
+      expect(page).not_to have_css("cart-item-#{@paper.id}")
     end
   end
+
+  # User Story 24, Decreasing Item Quantity from Cart
+  #
+  # As a visitor
+  # When I have items in my cart
+  # And I visit my cart
+  # Next to each item in my cart
+  # I see a button or link to decrement the count of items I want to purchase
+  # If I decrement the count to 0 the item is immediately removed from my cart
 
   # User Story 23, Adding Item Quantity to Cart
 
