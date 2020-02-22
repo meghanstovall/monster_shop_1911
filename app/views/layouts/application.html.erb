@@ -29,6 +29,9 @@
       <% else %>
         <%= link_to "Register as New User", "/register" %>
         <%= link_to "Login", "/login" %>
+        <% if cart.total_items > 0 %>
+          <%= "Warning: You must register or log in to finish the checkout process" %>
+        <% end %>
       <% end %>
     </nav>
 
