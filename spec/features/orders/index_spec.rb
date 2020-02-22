@@ -43,9 +43,6 @@ RSpec.describe "orders index page" do
     expect(page).to have_link('My Orders')
     click_link('My Orders')
     expect(current_path).to eq('/profile/orders')
-
-    # save_and_open_page
-    # require "pry"; binding.pry
   end
 
   scenario "user profile orders page displays all orders" do
