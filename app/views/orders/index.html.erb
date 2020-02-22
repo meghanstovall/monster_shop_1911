@@ -1,0 +1,15 @@
+<h2> My Orders </h2>
+<% if @user != nil %>
+  <% @user.orders.each do |order| %>
+    <p><section id = "order-<%= order.id %>">
+        <ul>
+          <li><b>Order ID:</b> <%= link_to "#{order.id}", "/profile/orders/#{order.id}" %></li>
+          <li><b>Order Made On: </b><%= order.created_at %></li>
+          <li><b>Order Last Updated On: </b><%=order.updated_at%></li>
+          <li><b>Order Status:</b> <%=order.status%></li>
+          <li><b>Total Item Quantity:</b> <%=order.total_item_quantity%></li>
+          <li><b>Grand Total of All Items: </b><%= number_to_currency(order.grandtotal) %></li>
+        </ul>
+    </section></p>
+  <% end %>
+<% end %>

@@ -43,7 +43,16 @@ describe Item, type: :model do
 
     it 'no orders' do
       expect(@chain.no_orders?).to eq(true)
-      order = Order.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
+      tim = User.create(name: 'Tim',
+                      street_address: '123 Turing St',
+                      city: 'Denver',
+                      state: 'CO',
+                      zip: '80020',
+                      email: 'tim@gmail.com',
+                      password: 'password1',
+                      password_confirmation: "password1",
+                      role: 1)
+      order = tim.orders.create(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
@@ -61,8 +70,17 @@ describe Item, type: :model do
       @dog_bed = @brian.items.create(name: "Dog Bed", description: "They'll love it!", price: 15, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
       @dog_dish = @brian.items.create(name: "Dog Dish", description: "They'll love it!", price: 5, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
 
-      @order_1 = Order.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
-      @order_2 = Order.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+      @tim = User.create(name: 'Tim',
+                      street_address: '123 Turing St',
+                      city: 'Denver',
+                      state: 'CO',
+                      zip: '80020',
+                      email: 'tim@gmail.com',
+                      password: 'password1',
+                      password_confirmation: "password1",
+                      role: 1)
+      @order_1 = @tim.orders.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+      @order_2 = @tim.orders.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
 
       @tire_order = ItemOrder.create(order_id: @order_1.id, item_id: @tire.id, price: 100, quantity: 8)
       @tire_pump_order = ItemOrder.create(order_id: @order_1.id, item_id: @tire_pump.id, price: 8, quantity: 7)

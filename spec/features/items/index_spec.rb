@@ -104,8 +104,8 @@ RSpec.describe "Items Index Page" do
     end
 
     it "can see stats for top 5 most popular and least 5 popular" do
-      order_1 = Order.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
-      order_2 = Order.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+      order_1 = @user.orders.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
+      order_2 = @user.orders.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
 
       tire_order = ItemOrder.create(order_id: order_1.id, item_id: @tire.id, price: 100, quantity: 8)
       tire_pump_order = ItemOrder.create(order_id: order_1.id, item_id: @tire_pump.id, price: 8, quantity: 7)
