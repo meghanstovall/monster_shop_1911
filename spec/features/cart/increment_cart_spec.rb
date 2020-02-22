@@ -57,7 +57,7 @@ RSpec.describe 'Cart inrementation' do
 
       expect(current_path).to eq('/cart')
       expect(page).to have_content("Out of Stock")
-      save_and_open_page
+      # save_and_open_page
     end
   end
 
