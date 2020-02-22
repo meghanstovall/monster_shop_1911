@@ -40,19 +40,16 @@ class CartController < ApplicationController
     if params[:quantity] == "add" && item.inventory > session[:cart][params[:item_id]]
       session[:cart][params[:item_id]] += 1
       redirect_to '/cart'
-    else params[:quantity] == "add"
+    elsif params[:quantity] == "add"
       flash[:error] = "Out of Stock"
       redirect_to '/cart'
+    elsif params[:quantity] == "subtract" && session[:cart][params[:item_id]] > 1
+      session[:cart][params[:item_id]] -= 1
+      redirect_to '/cart'
+    else params[:quantity] == "subtract" && session[:cart][params[:item_id]] == 1
+      flash[:notice] = "Item has been removed from the cart"
+      remove_item
     end
   end
-
-  # def increment_decrement
-  #   if params[:increment_decrement] == "increment"
-  #     cart.add_quantity(params[:item_id]) unless cart.limit_reached?(params[:item_id])
-  #   elsif params[:increment_decrement] == "decrement"
-  #     cart.subtract_quantity(params[:item_id])
-  #     return remove_item if cart.quantity_zero?(params[:item_id])
-  #   end
-  #   redirect_to "/cart"
-  # end
+  
 end
