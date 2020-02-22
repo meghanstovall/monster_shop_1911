@@ -51,7 +51,6 @@ RSpec.describe "orders index page" do
     expect(current_path).to eq('/profile/orders')
 
     within "#order-#{@user_order.id}" do
-      # save_and_open_page
       expect(page).to have_link(@user_order.id)
       expect(page).to have_content("Order ID: #{@user_order.id}")
       expect(page).to have_content(@user_order.created_at)
@@ -60,10 +59,5 @@ RSpec.describe "orders index page" do
       expect(page).to have_content("Total Item Quantity: 4")
       expect(page).to have_content("Grand Total of All Items: $142.00")
     end
-
-  end
-
-  scenario "user profile orders show page displays order info" do
-
   end
 end
