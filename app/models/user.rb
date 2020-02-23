@@ -12,7 +12,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
 
   has_many :orders
-  belongs_to :merchant, optional:true
+
+  belongs_to :merchant, optional: true 
 
   enum role: %w(regular default merchant admin)
   has_secure_password
