@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200222231150) do
+ActiveRecord::Schema.define(version: 20200223173136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,6 @@ ActiveRecord::Schema.define(version: 20200222231150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 1
-
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_users_on_merchant_id"
   end
