@@ -61,7 +61,7 @@ RSpec.describe "orders index page" do
     click_button 'Cancel'
 
     expect(current_path).to eq('/profile')
-    expect(page).to have_content('Order has been canceled.')
+    expect(page).to have_content('Order has been cancelled.')
     within "#order-#{@user_order.id}" do
       expect(page).to have_content('cancelled')
     end
