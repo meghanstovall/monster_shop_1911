@@ -57,4 +57,6 @@
   <p>Order Last Updated On: <%= @order.updated_at %></p>
 </section>
 
-<%= button_to 'Cancel', "/orders/#{@order.id}", method: :patch %>
+<% if @order.status != 'shipped' %>
+  <%= button_to 'Cancel', "/orders/#{@order.id}", method: :patch %>
+<% end %>
