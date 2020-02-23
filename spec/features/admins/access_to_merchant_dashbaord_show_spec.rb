@@ -88,14 +88,10 @@ RSpec.describe 'As an admin' do
       fill_in :password, with: 'hamburger2'
       click_button 'Log In'
       visit "/merchant/#{@merchant_user.id}/dashboard"
-      save_and_open_page
       expect(page).to have_link(new_order.id)
-      # expect(page).to have_content(new_order.order_date)
-      # expect(page).to have_content(2) # or (2)
-      # expect(page).to have_content(140) # or (2)
+      expect(page).to have_content(new_order.created_at.strftime("%Y-%m-%d"))
+      expect(page).to have_content("Quantity of Items in Order: 1")
+      expect(page).to have_content("Total Cost of Merchant Items: $100")
     end
   end
 end
-# As a merchant employee
-# When I visit my merchant dashboard ("/merchant")
-# I see the name and full address of the merchant I work for
