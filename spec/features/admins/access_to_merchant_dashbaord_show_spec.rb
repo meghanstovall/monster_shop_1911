@@ -57,14 +57,8 @@ RSpec.describe 'As an admin' do
 
       expect(current_path).to eq('/profile')
 
-      # visit "/items/#{paper.id}"
-      # click_on "Add To Cart"
-      # visit "/items/#{paper.id}"
-      # click_on "Add To Cart"
       visit "/items/#{tire.id}"
       click_on "Add To Cart"
-      # visit "/items/#{pencil.id}"
-      # click_on "Add To Cart"
 
       visit "/cart"
       click_on "Checkout"
@@ -78,8 +72,6 @@ RSpec.describe 'As an admin' do
       click_button "Create Order"
 
       new_order = Order.last
-      # ItemOrder.create(item_id: "#{tire.id}", order_id: "#{new_order.id}", price: 100, quantity: 1)
-      # ItemOrder.create(item_id: "#{paper.id}", order_id: "#{new_order.id}", price: 40, quantity: 2)
       click_link "Logout"
       click_link 'Login'
       expect(current_path).to eq('/login')
@@ -92,6 +84,12 @@ RSpec.describe 'As an admin' do
       expect(page).to have_content(new_order.created_at.strftime("%Y-%m-%d"))
       expect(page).to have_content("Quantity of Items in Order: 1")
       expect(page).to have_content("Total Cost of Merchant Items: $100")
+
+      click_link 'Our store items'
+      expect(current_path).to eq("/merchant/#{@bike_shop.id}/items")
+
+
     end
+
   end
 end

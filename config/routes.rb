@@ -59,6 +59,7 @@ Rails.application.routes.draw do
   #only admin users will be able to reach this resource
   get '/dashboard', to: "dashboard#show"
   get '/:merchant_id/dashboard', to: "dashboard#show"
+  get '/:merchant_id/items', to: "items#index"
 end
 
   namespace :admin do

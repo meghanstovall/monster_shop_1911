@@ -10,4 +10,5 @@
      <h5>Total Cost of Merchant Items: <%= number_to_currency(item_order.order.merchant_total(current_user.merchant.id)) %></h5>
    <% end %>
  <% end %>
+ <%= link_to 'Our store items',"/merchant/#{current_user.merchant.id}/items" %>
 <% end %>
