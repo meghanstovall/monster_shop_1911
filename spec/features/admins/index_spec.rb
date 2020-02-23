@@ -109,6 +109,11 @@ RSpec.describe "admin sees all orders" do
       expect(page).to have_link(@order_3.name)
       expect(page).to have_link(@order_4.name)
     end
-  end
 
+    visit "/profile/orders/#{@order_3.id}"
+    expect(page).to_not have_button("Cancel")
+
+    visit "/profile/orders/#{@order_4.id}"
+    expect(page).to_not have_button("Cancel")
+  end
 end
