@@ -116,7 +116,6 @@ RSpec.describe 'Cart inrementation' do
 
       within "#item-quantity-#{paper.id}" do
         expect(page).to have_content("1")
-        save_and_open_page
       end
 
       expect(page).to_not have_content("Warning: You must register or log in to finish the checkout process")
