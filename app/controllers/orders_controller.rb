@@ -37,6 +37,8 @@ class OrdersController <ApplicationController
 
   def update
     order = Order.find(params[:id])
+    order.status = "cancelled"
+    require "pry"; binding.pry
   end
 
   private
