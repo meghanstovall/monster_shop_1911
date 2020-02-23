@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "different users login" do
   before(:each) do
     User.destroy_all
+    Item.destroy_all
 
     @visitor_user = User.create!(name: "Damon",street_address: "2417 E. Curtis St. Denver, CO",
                               city: "denver",state: "CO",zip: "80206",email: "new_email0@gmail.com",password: "hamburger0", role: 0)
