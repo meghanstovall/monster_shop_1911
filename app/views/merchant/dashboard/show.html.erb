@@ -1,10 +1,4 @@
 <% if current_user.merchant != nil %>
-  <h1><%= current_user.merchant.name %></h1>
-  <h3><%= current_user.merchant.address%>, <%= current_user.merchant.city%>, <%= current_user.merchant.state%>, <%= current_user.merchant.zip%></h3>
-<% end %>
-
-
-<% if current_user.merchant != nil %>
 
   <h1><%= current_user.merchant.name %></h1>
   <h3><%= current_user.merchant.address%>, <%= current_user.merchant.city%>, <%= current_user.merchant.state%>, <%= current_user.merchant.zip%></h3>
@@ -12,6 +6,9 @@
 
 <% if current_user.merchant.item_orders != [] %>
   <% current_user.merchant.item_orders.each do |item_order| %>
-    <%= link_to item_order.id, "/orders/:id" %>
+    <h5>Order ID: <%= link_to item_order.order.id, "/orders/:id" %></h5>
+    <h5>Order Created at: <%= item_order.created_at.strftime("%Y-%m-%d") %></h5>
+    <h5>Quantity of Items in Order: <%= item_order.order.merchant_quantity(current_user.merchant.id) %></h5>
+    <h5>Total Cost of Merchant Items: <%= number_to_currency(item_order.order.merchant_total(current_user.merchant.id)) %></h5>
   <% end %>
 <% end %>
