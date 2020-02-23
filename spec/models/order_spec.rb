@@ -69,5 +69,15 @@ describe Order, type: :model do
       expect(@order_1.item_orders.second.status).to eq('fulfilled')
       expect(@order_1.status).to eq('shipped')
     end
+
+    describe "Instance Methods" do
+      it "#merchant_quantity" do
+        expect(@order_1.merchant_quantity(@meg.id)).to eq(2)
+      end
+
+      it 'merchant total' do
+        expect(@order_1.merchant_total(@meg.id)).to eq(200.0)
+      end
+    end
   end
 end
