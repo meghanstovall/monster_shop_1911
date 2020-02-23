@@ -53,8 +53,44 @@ RSpec.describe "orders index page" do
       expect(page).to have_content(@paper_order.quantity)
       expect(page).to have_content(@paper.price)
       expect(page).to have_content(@paper_order.subtotal)
-    end  
+    end
   end
 
+  scenario "can cancel an order" do
+    visit '/profile/orders'
+
+    visit "/profile/orders/#{@user_order.id}"
+    click_button 'Cancel'
+
+    expect(current_path).to eq('/profile/orders')
+    expect(page).to have_content('Order has been cancelled.')
+
+    within "#order-#{@user_order.id}" do
+      expect(page).to have_content('cancelled')
+    end
+  end
+
+  scenario "all merchants fulfill items on an order, status changes" do
+    visit '/profile'
+    @merchant_user = User.create!(name: "Ben",street_address: "891 Penn St. Denver, CO",
+                              city: "denver",state: "CO",zip: "80206",email: "new_email2@gmail.com",password: "hamburger2", role: 2)
+
+    click_link "Logout"
+    visit '/'
+    click_link "Login"
+    expect(current_path).to eq('/login')
+    fill_in :email, with: @merchant_user.email
+    fill_in :password, with: "hamburger2"
+    click_button "Log In"
+    expect(current_path).to eq("/merchant/dashboard")
+    merchant_order = @merchant_user.orders.create(name: @merchant_user.name, address: @merchant_user.street_address, city: @merchant_user.city, state: @merchant_user.state, zip: @merchant_user.zip)
+
+    ItemOrder.create!(item: @tire, order: merchant_order, price: @tire.price, quantity: 2, status:1)
+    ItemOrder.create!(item: @paper, order: merchant_order, price: @paper.price, quantity: 3)
+
+    expect(merchant_order.status).to eq("pending")
+    merchant_order.fulfill
+    expect(merchant_order.status).to eq("packaged")
+  end
 
 end

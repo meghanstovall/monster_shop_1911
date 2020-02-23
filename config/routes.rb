@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "/orders/new", to: "orders#new"
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
+  patch "/orders/:id", to: "orders#update"
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
@@ -63,6 +64,8 @@ end
   namespace :admin do
   #only admin users will be able to reach this resource
     get '/dashboard', to: "dashboard#show"
+    get '/profile/:id', to: "users#show"
+    patch '/orders/:id', to: "dashboard#update"
     # get '/merchant/:merchant_id', to: "dashboard#show"
   end
 end

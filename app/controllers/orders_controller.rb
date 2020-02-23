@@ -35,6 +35,13 @@ class OrdersController <ApplicationController
     @user = current_user
   end
 
+  def update
+    order = current_user.orders.find(params[:id])
+    order.cancel_process
+    redirect_to '/profile/orders'
+    flash[:notice] = 'Order has been cancelled.'
+  end
+
   private
 
   def order_params

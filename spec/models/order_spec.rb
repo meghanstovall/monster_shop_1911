@@ -26,11 +26,48 @@ describe Order, type: :model do
 
       @order_1 = @mike.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
 
-      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2, status: 1)
       @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
     end
-    it 'grandtotal' do
+
+    it '.grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
+    end
+
+    it '.total_item_quantity' do
+      expect(@order_1.total_item_quantity).to eq(5)
+    end
+
+    it '.cancel_process' do
+      expect(@order_1.item_orders.first.status).to eq('fulfilled')
+      expect(@order_1.item_orders.second.status).to eq('unfulfilled')
+      expect(@order_1.status).to eq('pending')
+
+      expect(@order_1.cancel_process.first.status).to eq('unfulfilled')
+      expect(@order_1.cancel_process.second.status).to eq('unfulfilled')
+      expect(@order_1.status).to eq('cancelled')
+    end
+
+    it '.fulfill' do
+      expect(@order_1.item_orders.first.status).to eq('fulfilled')
+      expect(@order_1.item_orders.second.status).to eq('unfulfilled')
+      expect(@order_1.status).to eq('pending')
+
+      expect(@order_1.fulfill).to eq(true)
+      expect(@order_1.item_orders.first.status).to eq('fulfilled')
+      expect(@order_1.item_orders.second.status).to eq('fulfilled')
+      expect(@order_1.status).to eq('packaged')
+    end
+
+    it '.ship_and_fulfill' do
+      expect(@order_1.item_orders.first.status).to eq('fulfilled')
+      expect(@order_1.item_orders.second.status).to eq('unfulfilled')
+      expect(@order_1.status).to eq('pending')
+
+      expect(@order_1.ship_and_fulfill).to eq(true)
+      expect(@order_1.item_orders.first.status).to eq('fulfilled')
+      expect(@order_1.item_orders.second.status).to eq('fulfilled')
+      expect(@order_1.status).to eq('shipped')
     end
   end
 end

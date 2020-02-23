@@ -56,3 +56,5 @@
   <p>Order Made On: <%= @order.created_at%></p>
   <p>Order Last Updated On: <%= @order.updated_at %></p>
 </section>
+
+<%= button_to 'Cancel', "/orders/#{@order.id}", method: :patch %>

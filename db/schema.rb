@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20200222231150) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["item_id"], name: "index_item_orders_on_item_id"
     t.index ["order_id"], name: "index_item_orders_on_order_id"
   end
@@ -58,7 +59,7 @@ ActiveRecord::Schema.define(version: 20200222231150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "status", default: "pending"
+    t.integer "status", default: 0
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -81,6 +82,7 @@ ActiveRecord::Schema.define(version: 20200222231150) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 1
+
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_users_on_merchant_id"
   end

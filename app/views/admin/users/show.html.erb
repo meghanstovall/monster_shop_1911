@@ -1,0 +1,9 @@
+<h2><%= @user.name %>'s Profile</h2>
+Name: <%= @user.name %></br>
+Street Address: <%= @user.street_address %></br>
+City: <%= @user.city %></br>
+State: <%= @user.state %></br>
+Zip Code: <%= @user.zip %></br>
+Email: <%= @user.email %></br>
+<%= link_to 'Edit Password', "/profile/#{@user.id}/edit_password" %>
+<%= link_to 'My Orders', "/profile/orders" %>
