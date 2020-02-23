@@ -3,7 +3,6 @@ class ItemOrder <ApplicationRecord
 
   belongs_to :item
   belongs_to :order
-  before_save :default_values
 
   enum status: %w(fulfilled unfulfilled)
 
@@ -11,8 +10,4 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
-  def default_values
-    self.status = 0
-  end
-  
 end
