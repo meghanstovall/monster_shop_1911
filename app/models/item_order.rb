@@ -5,7 +5,7 @@ class ItemOrder <ApplicationRecord
   belongs_to :order
   before_save :default_values
 
-  enum status: %w(unfulfilled fulfilled)
+  enum status: %w(fulfilled unfulfilled)
 
   def subtotal
     price * quantity
@@ -14,4 +14,5 @@ class ItemOrder <ApplicationRecord
   def default_values
     self.status = 0
   end
+  
 end
