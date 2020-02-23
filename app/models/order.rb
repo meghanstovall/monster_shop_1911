@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   belongs_to :user
   has_many :item_orders
   has_many :items, through: :item_orders
-  enum status: %w(pending cancelled packaged)
+  enum status: %w(pending cancelled packaged shipped)
 
   def grandtotal
     item_orders.sum('price * quantity')
@@ -27,5 +27,12 @@ class Order < ApplicationRecord
       item_order.update(status: 1)
     end
     update(status: 2)
+  end
+
+  def ship_and_fulfill
+    item_orders.each do |item_order|
+      item_order.update(status: 1)
+    end
+    update(status: 3)
   end
 end
