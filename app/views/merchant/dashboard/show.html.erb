@@ -1,4 +1,11 @@
 <% if current_user.merchant != nil %>
+
   <h1><%= current_user.merchant.name %></h1>
   <h3><%= current_user.merchant.address%>, <%= current_user.merchant.city%>, <%= current_user.merchant.state%>, <%= current_user.merchant.zip%></h3>
+<% end %>
+
+<% if current_user.merchant.items != [] %>
+  <% current_user.merchant.items.item_orders.each do |item_order| %>
+    <%= link_to "#{item_order.id}", "/orders/:id" %>
+  <% end %>
 <% end %>
