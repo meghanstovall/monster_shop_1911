@@ -36,9 +36,10 @@ class OrdersController <ApplicationController
   end
 
   def update
-    order = Order.find(params[:id])
-    order.status = "cancelled"
-    require "pry"; binding.pry
+    order = current_user.orders.find(params[:id])
+    order.update_process
+    redirect_to '/profile/orders'
+    flash[:notice] = 'Order has been cancelled.'
   end
 
   private
