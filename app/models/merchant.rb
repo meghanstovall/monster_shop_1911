@@ -40,4 +40,10 @@ class Merchant <ApplicationRecord
       item.update(active?: false)
     end
   end
+
+  def activate_items
+    items.each do |item|
+      item.update(active?: true)
+    end
+  end
 end
