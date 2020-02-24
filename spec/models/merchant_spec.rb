@@ -93,5 +93,12 @@ describe Merchant, type: :model do
       expect(@tire.active?).to eq(false)
       expect(@seat.active?).to eq(false)
     end
+
+    it "activate_items" do
+      @meg.activate_items
+
+      expect(@tire.active?).to eq(true)
+      expect(@seat.active?).to eq(true)
+    end
   end
 end
