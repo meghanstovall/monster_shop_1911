@@ -70,5 +70,6 @@ end
     patch '/orders/:id', to: "dashboard#update"
     patch '/merchants/:id', to: "merchants#update"
     get '/merchants/:merchant_id', to: "dashboard#show"
+    get '/users', to: 'admin_users#index'
   end
 end
