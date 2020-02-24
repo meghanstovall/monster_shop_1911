@@ -9,6 +9,7 @@ class Merchant <ApplicationRecord
                         :state,
                         :zip
 
+  validates_inclusion_of :disabled, :in => [true, false]
 
   def no_orders?
     item_orders.empty?
@@ -26,4 +27,11 @@ class Merchant <ApplicationRecord
     item_orders.distinct.joins(:order).pluck(:city)
   end
 
+  def enable_disable
+    if disabled == false
+      update(disabled: true)
+    else
+      update(disabled: false)
+    end
+  end
 end

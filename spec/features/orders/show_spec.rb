@@ -92,5 +92,4 @@ RSpec.describe "orders index page" do
     merchant_order.fulfill
     expect(merchant_order.status).to eq("packaged")
   end
-
 end

@@ -65,8 +65,10 @@ end
   namespace :admin do
   #only admin users will be able to reach this resource
     get '/dashboard', to: "dashboard#show"
+    get '/merchants', to: "merchants#index"
     get '/profile/:id', to: "users#show"
     patch '/orders/:id', to: "dashboard#update"
-    # get '/merchant/:merchant_id', to: "dashboard#show"
+    patch '/merchants/:id', to: "merchants#update"
+    get '/merchants/:merchant_id', to: "dashboard#show"
   end
 end

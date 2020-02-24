@@ -7,6 +7,7 @@ describe Merchant, type: :model do
     it { should validate_presence_of :city }
     it { should validate_presence_of :state }
     it { should validate_presence_of :zip }
+    it { should validate_inclusion_of(:disabled).in_array([true,false]) }
   end
 
   describe "relationships" do
@@ -16,9 +17,20 @@ describe Merchant, type: :model do
 
   describe 'instance methods' do
     before(:each) do
-      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203, disabled: false)
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      @user_1 = User.create!(
+        name: "Peter Webber",
+        street_address: "30 Girls Street",
+        city: "Los Angeles",
+        state: "CA",
+        zip: 90036,
+        email: "pilotpete@gmail.com",
+        password: "password1",
+        password_confirmation: "password1",
+        role: 3)
     end
+
     it 'no_orders' do
       expect(@meg.no_orders?).to eq(true)
 
@@ -70,5 +82,9 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities).to eq(["Denver","Hershey"])
     end
 
+    it "enable_disable" do
+      expect(@meg.enable_disable).to eq(true)
+      expect(@meg.enable_disable).to eq(false)
+    end
   end
 end
