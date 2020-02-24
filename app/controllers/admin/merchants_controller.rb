@@ -8,8 +8,11 @@ class Admin::MerchantsController < Admin::BaseController
     merchant.enable_disable
     if merchant.disabled
       merchant.deactivate_items
+      flash[:notice] = "Merchant has been disabled"
+    else
+      merchant.activate_items
+      flash[:notice] = "Merchant has been enabled"
     end
-    flash[:notice] = "Merchant has been disabled"
 
     redirect_to '/admin/merchants'
   end
