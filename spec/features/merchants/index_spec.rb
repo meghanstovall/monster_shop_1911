@@ -86,5 +86,29 @@ RSpec.describe 'merchant index page', type: :feature do
       expect(@bike_shop.items.first.active?).to eq(false)
       expect(@bike_shop.items.last.active?).to eq(false)
     end
+
+    it "can enabl already disabled merchants" do
+      visit "/login"
+
+      fill_in :email, with: @user_1.email
+      fill_in :password, with: @user_1.password
+      click_button "Log In"
+
+      visit "/admin/merchants"
+
+      within "#merchant-#{@bike_shop.id}" do
+        click_button "Disable"
+        expect(current_path).to eq("/admin/merchants")
+      end
+
+      visit "/admin/merchants"
+
+      within "#merchant-#{@bike_shop.id}" do
+        click_button "Enable"
+        expect(current_path).to eq("/admin/merchants")
+        expect(page).to have_content("Disabled: false")
+      end
+      expect(page).to have_content("Merchant has been enabled")
+    end
   end
 end
