@@ -34,4 +34,10 @@ class Merchant <ApplicationRecord
       update(disabled: false)
     end
   end
+
+  def deactivate_items
+    items.each do |item|
+      item.update(active?: false)
+    end
+  end
 end
