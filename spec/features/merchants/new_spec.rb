@@ -49,6 +49,5 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(page).to have_content("Address can't be blank and State can't be blank")
       expect(page).to have_button("Create Merchant")
     end
-
   end
 end
