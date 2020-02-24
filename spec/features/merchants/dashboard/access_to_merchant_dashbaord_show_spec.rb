@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'As an admin' do
+RSpec.describe 'As an merchant employee' do
   context 'I can access the merchant dashboard' do
     before :each do
       User.destroy_all
@@ -28,7 +28,7 @@ RSpec.describe 'As an admin' do
       expect(page).to have_content(@bike_shop.address)
     end
 
-    it "orders information with items I sell can be seen by " do
+    it "orders information with items I sell can be seen by & see a link to my items index" do
 
       click_link "Logout"
 
