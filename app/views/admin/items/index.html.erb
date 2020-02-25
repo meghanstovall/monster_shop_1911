@@ -1,0 +1,19 @@
+<p><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
+
+<% @merchant.items.each do |item| %>
+  <section id='item-<%=item.id%>'>
+    <p>Name: <%= item.name %> </p>
+    <p>Description: <%= item.description %> </p>
+    <p>Price: <%=number_to_currency(item.price) %> </p>
+    <%= image_tag(item.image, height: '100', width: '100') %>
+    <% if item.active? %>
+      <p>Status: Active</p>
+      <p><%= link_to "Deactivate #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}", method: :patch %></p>
+    <% else %>
+      <p>Status: Inactive</p>
+      <p><%= link_to "Activate #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}", method: :patch %></p>
+    <% end %>
+    <p>Inventory: <%= item.inventory %> </p>
+    <%= link_to "Edit #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}/edit", method: :patch %>
+  </section>
+<% end %>
