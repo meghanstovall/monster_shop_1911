@@ -72,6 +72,7 @@ end
     get '/merchants/:merchant_id', to: "dashboard#show"
     get '/merchants/:merchant_id/items', to: "items#index"
     patch '/merchants/:merchant_id/items/:item_id', to: "items#update"
+    delete '/merchants/:merchant_id/items/:item_id', to: "items#destroy"
     get '/users', to: 'admin_users#index'
   end
 end
