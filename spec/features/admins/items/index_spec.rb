@@ -1,0 +1,75 @@
+require 'rails_helper'
+
+RSpec.describe 'Admin User' do
+  before(:each) do
+    @admin_user = User.create!(name: "John",
+                              street_address: "123 Colfax St. Denver, CO",
+                              city: "denver",
+                              state: "CO",
+                              zip: "80206",
+                              email: "new_email3@gmail.com",
+                              password: "hamburger3",
+                              role: 3)
+
+    @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
+    @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+
+    @item1 = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+    @item2 = @mike.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)
+    @item3 = @mike.items.create(name: "Yellow Pencil", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 100)
+
+
+    visit '/login'
+    fill_in :email, with: @admin_user.email
+    fill_in :password, with: @admin_user.password
+    click_button "Log In"
+
+    visit "/admin/merchants/#{@mike.id}/items"
+  end
+
+  scenario 'see all items for that merchant' do
+    within "#item-#{@item2.id}" do
+      expect(page).to have_content(@item2.name)
+      expect(page).to have_content(@item2.description)
+      expect(page).to have_content("Price: $20.00")
+      expect(page).to have_css("img[src*='#{@item2.image}']")
+      expect(page).to have_content("Active")
+      expect(page).to have_content("Inventory: 3")
+    end
+
+    within "#item-#{@item3.id}" do
+      expect(page).to have_content(@item3.name)
+      expect(page).to have_content(@item3.description)
+      expect(page).to have_content("Price: $2")
+      expect(page).to have_css("img[src*='#{@item3.image}']")
+      expect(page).to have_content("Active")
+      expect(page).to have_content("Inventory: 100")
+    end
+
+    expect(page).not_to have_css("#item-#{@item1.id}")
+  end
+
+  scenario "can activate and deactivate items" do
+    within "#item-#{@item2.id}" do
+      expect(page).to have_link("Deactivate #{@item2.name}")
+      click_link("Deactivate #{@item2.name}")
+      expect(page).to have_link("Activate #{@item2.name}")
+      click_link("Activate #{@item2.name}")
+      expect(page).to have_link("Deactivate #{@item2.name}")
+    end
+    
+    expect(page).to have_content("#{@item2.name} is now available for sale.")
+
+    within "#item-#{@item3.id}" do
+      expect(page).to have_link("Deactivate #{@item3.name}")
+      click_link("Deactivate #{@item3.name}")
+      expect(page).to have_link("Activate #{@item3.name}")
+    end
+
+    expect(page).to have_content("#{@item3.name} is no longer for sale.")
+
+  end
+
+
+
+end
