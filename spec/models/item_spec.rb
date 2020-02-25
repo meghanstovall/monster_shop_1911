@@ -56,6 +56,14 @@ describe Item, type: :model do
       order.item_orders.create(item: @chain, price: @chain.price, quantity: 2)
       expect(@chain.no_orders?).to eq(false)
     end
+
+    it "updates_active" do
+      expect(@chain.active?).to eq(true)
+      @chain.updates_active
+      expect(@chain.active?).to eq(false)
+      @chain.updates_active
+      expect(@chain.active?).to eq(true)
+    end
   end
 
   describe "class methods" do
@@ -97,14 +105,6 @@ describe Item, type: :model do
 
     it "can find least popular items" do
       expect(Item.least_popular).to eq([@dog_dish, @dog_bed, @dog_bone, @pull_toy, @bike_seat])
-    end
-    
-    it "update_active" do
-      expect(@tire.active?).to eq(true)
-      @tire.updates_active
-      expect(@tire.active?).to eq(false)
-      @tire.updates_active
-      expect(@tire.active?).to eq(true)
     end
   end
 end
