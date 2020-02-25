@@ -10,10 +10,7 @@ class UsersController < ApplicationController
 
   def show
     require_user
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-      flash[:success] = "#{@user.name} is logged in."
-    end
+    show_message if session[:user_id]
   end
 
   def edit
@@ -35,15 +32,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(
-      :name,
-      :street_address,
-      :city,
-      :state,
-      :zip,
-      :email,
-      :password,
-      :password_confirmation)
+    params.permit(:name, :street_address, :city, :state, :zip, :email, :password, :password_confirmation)
   end
 
   def require_user
@@ -52,36 +41,72 @@ class UsersController < ApplicationController
 
   def create_user
     @user = User.create(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "#{@user.name} is now logged in"
-      redirect_to '/profile'
-    else
-      flash[:error] = "#{@user.errors.full_messages.to_sentence}"
-      render :new
-    end
+    create_save_process(user = @user) if @user.save == true
+    create_save_error(user = @user) if @user.save == false
+  end
+
+  def create_save_process(user)
+    session[:user_id] = user.id
+    flash[:notice] = "#{user.name} is now logged in"
+    redirect_to '/profile'
+  end
+
+  def create_save_error(user)
+    flash[:error] = "#{user.errors.full_messages.to_sentence}"
+    render :new
   end
 
   def update_user
     user = User.find(session[:user_id])
     user.update(user_params)
-    if user.save
-      flash[:sucess] = "Changes Made to Profile Successfully"
-      redirect_to '/profile'
-    else
-      flash[:error] = "#{user.errors.full_messages.to_sentence}"
-      redirect_to "/profile/#{user.id}/edit"
-    end
+    update_redirects(user)
+  end
+
+  def update_redirects(user)
+    redirects_1(user) if user.save == true
+    redirects_2(user) if user.save == false
+  end
+
+  def redirects_1(user)
+    flash[:sucess] = "Changes Made to Profile Successfully"
+    redirect_to '/profile'
+  end
+
+  def redirects_2(user)
+    flash[:error] = "#{user.errors.full_messages.to_sentence}"
+    redirect_to "/profile/#{user.id}/edit"
+  end
+
+  def create_save_process(user)
+    session[:user_id] = user.id
+    flash[:notice] = "#{user.name} is now logged in"
+    redirect_to '/profile'
+  end
+
+  def create_save_error(user)
+    flash[:error] = "#{user.errors.full_messages.to_sentence}"
+    render :new
   end
 
   def password_update
     user = User.find(session[:user_id])
-    if user.update(user_params)
-      flash[:sucess] = "Password Updated Successfully"
-      redirect_to '/profile'
-    else
-      flash[:failure] = "Passwords must match!"
-      redirect_to "/profile/#{user.id}/edit_password"
-    end
+    password_1 if user.update(user_params)
+    password_2(user) if user.update(user_params) == false
   end
+
+  def password_1
+    flash[:sucess] = "Password Updated Successfully"
+    redirect_to '/profile'
+  end
+
+  def password_2(user)
+    flash[:failure] = "Passwords must match!"
+    redirect_to "/profile/#{user.id}/edit_password"
+  end
+
+  def show_message
+    @user = User.find(session[:user_id])
+    flash[:success] = "#{@user.name} is logged in."
+  end
+
 end

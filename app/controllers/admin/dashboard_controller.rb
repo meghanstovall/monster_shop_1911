@@ -5,8 +5,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def update
-    order = Order.find(params[:id])
-    order.ship_and_fulfill
+    Order.find(params[:id]).ship_and_fulfill
     redirect_to "/admin/dashboard"
   end
 end

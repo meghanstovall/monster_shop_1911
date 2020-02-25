@@ -39,23 +39,29 @@ class MerchantsController <ApplicationController
 
   def create_merchant
     merchant = Merchant.create(merchant_params)
-    if merchant.save
-      redirect_to merchants_path
-    else
-      flash[:error] = merchant.errors.full_messages.to_sentence
-      render :new
-    end
+    redirect_to merchants_path if merchant.save == true
+    create_merchant_save_error(merchant) if merchant.save == false
+  end
+
+  def create_merchant_save_error(merchant)
+    flash[:error] = merchant.errors.full_messages.to_sentence
+    render :new
   end
 
   def update_merchant
     @merchant = Merchant.find(params[:id])
-    @merchant.update(merchant_params)
-    if @merchant.save
-      redirect_to "/merchants/#{@merchant.id}"
-    else
-      flash[:error] = @merchant.errors.full_messages.to_sentence
-      render :edit
-    end
+    update_merchant_process(merchant = @merchant)
+  end
+
+  def update_merchant_process(merchant)
+    merchant.update(merchant_params)
+    redirect_to "/merchants/#{merchant.id}" if merchant.save == true
+    update_merchant_save_error(merchant) if merchant.save == false
+  end
+
+  def update_merchant_save_error(merchant)
+    flash[:error] = merchant.errors.full_messages.to_sentence
+    render :edit
   end
 
   def merchant
