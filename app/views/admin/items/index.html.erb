@@ -1,0 +1,25 @@
+<br>
+<center><p><%= link_to "Add New Item", "/admin/merchants/#{@merchant.id}/items/new" %></p></center>
+
+<% @merchant.items.each do |item| %>
+  <section id='item-<%=item.id%>'>
+    <h4><p>Name: <%= item.name %> </p></h4>
+    <p>Description: <%= item.description %> </p>
+    <p>Price: <%=number_to_currency(item.price) %> </p>
+    <%= image_tag(item.image, height: '100', width: '100') %>
+    <% if item.active? %>
+      <p>Status: Active &nbsp; &nbsp; &nbsp;
+      <%= link_to "Deactivate #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}", method: :patch %></p>
+    <% else %>
+      <p>Status: Inactive &nbsp; &nbsp; &nbsp;
+      <%= link_to "Activate #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}", method: :patch %></p>
+    <% end %>
+    <p>Inventory: <%= item.inventory %> </p>
+    <%= link_to "Edit #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}/edit", method: :get %> &nbsp; &nbsp; &nbsp;
+    <% if item.no_orders? == true  %>
+      <%= link_to "Delete #{item.name}", "/admin/merchants/#{@merchant.id}/items/#{item.id}", method: :delete %>
+    <% end %>
+  </section>
+  <br>
+  <br>
+<% end %>

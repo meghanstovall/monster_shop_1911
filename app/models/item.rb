@@ -7,11 +7,10 @@ class Item < ApplicationRecord
   validates_presence_of :name,
                         :description,
                         :price,
-                        :image,
                         :inventory
   validates_inclusion_of :active?, :in => [true, false]
   validates_numericality_of :price, greater_than: 0
-
+  validates_numericality_of :inventory, greater_than: 0
 
   def average_review
     reviews.average(:rating)
@@ -39,5 +38,13 @@ class Item < ApplicationRecord
     .group(:id)
     .order('quantity')
     .limit(5).to_a
+  end
+
+  def updates_active
+    if active? == true
+      update(active?: false)
+    else
+      update(active?: true)
+    end
   end
 end

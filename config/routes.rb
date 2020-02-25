@@ -70,6 +70,12 @@ end
     patch '/orders/:id', to: "dashboard#update"
     patch '/merchants/:id', to: "merchants#update"
     get '/merchants/:merchant_id', to: "dashboard#show"
+    get '/merchants/:merchant_id/items', to: "items#index"
+    patch '/merchants/:merchant_id/items/:item_id', to: "items#update"
+    delete '/merchants/:merchant_id/items/:item_id', to: "items#destroy"
+    get '/merchants/:merchant_id/items/new', to: "items#new"
+    post '/merchants/:merchant_id/items', to: 'items#create'
+    get '/merchants/:merchant_id/items/:item_id/edit', to: 'items#edit'
     get '/users', to: 'admin_users#index'
     get '/users/:user_id', to: 'admin_users#show'
   end
