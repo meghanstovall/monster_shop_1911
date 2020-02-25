@@ -5,46 +5,33 @@ BE Mod 2 Week 4/5 Group Project
 
 "Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
 
-Students will be put into 3 or 4 person groups to complete the project.\n
-
-## Learning Goals
 
 ### Rails
 * Create routes for namespaced routes
-* Implement partials to break a page into reusable components
 * Use Sessions to store information about a user and implement login/logout functionality
 * Use filters (e.g. `before_action`) in a Rails controller
 * Limit functionality to authorized users
 * Use BCrypt to hash user passwords before storing in the database
 
-### ActiveRecord
-* Use built-in ActiveRecord methods to join multiple tables of data, calculate statistics and build collections of data grouped by one or more attributes
-
 ### Databases
 * Design and diagram a Database Schema
-* Write raw SQL queries (as a debugging tool for AR)
 
-## Requirements
+## Application Resources
 
-- must use Rails 5.1.x
-- must use PostgreSQL
-- must use 'bcrypt' for authentication
-- all controller and model code must be tested via feature tests and model tests, respectively
-- must use good GitHub branching, team code reviews via GitHub comments, and use of a project planning tool like github projects
-- must include a thorough README to describe their project
+- Uses Rails 5.1.x
+- Uses PostgreSQL
+- Uses 'bcrypt' for authentication
+- Controller and model code was be tested via feature tests and model tests, respectively
+- Created using good GitHub branching, team code reviews via GitHub comments, and use of the project planning tool, github projects
 
 ## Permitted
 
-- use FactoryBot to speed up your test development
-- use "rails generators" to speed up your app development
-
-## Not Permitted
-
-- do not use JavaScript for pagination or sorting controls
+- To use FactoryBot to speed up your test development
+- To use "rails generators" to speed up your app development
 
 ## Permission
 
-- if there is a specific gem you'd like to use in the project, please get permission from your instructors first
+- If there is a specific gem you'd like to use in the project, please get permission from the creators first
 
 ## User Roles
 
@@ -60,57 +47,8 @@ Students will be put into 3 or 4 person groups to complete the project.\n
 3. 'shipped' means an admin has 'shipped' a package and can no longer be cancelled by a user
 4. 'cancelled' - only 'pending' and 'packaged' orders can be cancelled
 
-## Timeframe
-The following is an anticipated timeline of how these stories should be completed in order to be finished by 2/27/20 at 8pm.
+## Navigation (Nav Bar)
 
-* Tuesday: Story 1 && Story 10 - Story 12
-* Wednesday: Story 2 - Story 9, Story 13 - Story 16
-* Thursday: Story 17 - Story 22
-* Friday: Story 23 - Story 26
-* Saturday: Story 27 - Story 31
-* Sunday: Story 32 - Story 37
-* Monday: Story 38 - Story 41
-* Tuesday: Story 42 - Story 48
-* Wednesday: Story 49 - Story 51
-* Thursday: Story 52 - 54
-
-
-## Not Everything can be FULLY Deleted
-
-In the user stories, we talk about "CRUD" functionality. However, it's rare in a real production system to ever truly delete content, and instead we typically just 'enable' or 'disable' content. Users, items and orders can be 'enabled' or 'disabled' which blocks functionality (users whose accounts are disabled should not be allowed to log in, items which are disabled cannot be ordered, orders which are disabled cannot be processed, and so on).
-
-Disabled content should also be restricted from showing up in the statistics pages. For example: if an item is disabled, it should not appear in a list of "popular items".
-
-Be careful to watch out for which stories allow full deletion of content, and restrictions on when they apply.
-
-## Deploying to Heroku
-
-```
-[ ] done
-
-User Story 1, Deploy your application to Heroku
-
-As a visitor or user of the site
-I will perform all user stories
-By visiting the application on Heroku.
-Localhost is fine for development, but
-the application must be hosted on Heroku.
-```
-
----
-
-## Navigation
-This series of stories will set up a navigation bar at the top of the screen and present links and information to users of your site.
-
-There is no requirement that the nav bar be "locked" to the top of the screen.
-
-### Completion of these stories will encompass the following ideas:
-
-- the navigation is built into app/views/layouts/application.html.erb or loaded into that file as a partial
-- you write a single set of tests that simply click on a link and expect that your current path is what you expect to see
-- your nav tests don't need to check any content on the pages, just that current_path is what you expect
-
-You will need to set up some basic routing and empty controller actions and empty action view files.
 
 
 ```
