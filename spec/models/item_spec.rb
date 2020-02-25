@@ -98,5 +98,13 @@ describe Item, type: :model do
     it "can find least popular items" do
       expect(Item.least_popular).to eq([@dog_dish, @dog_bed, @dog_bone, @pull_toy, @bike_seat])
     end
+    
+    it "update_active" do
+      expect(@tire.active?).to eq(true)
+      @tire.updates_active
+      expect(@tire.active?).to eq(false)
+      @tire.updates_active
+      expect(@tire.active?).to eq(true)
+    end
   end
 end
