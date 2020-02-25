@@ -77,3 +77,22 @@ When registering, fill in all the fields with your information and remember, you
 
 
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
+
+
+## Contributors:
+* Meghan Stovall 
+
+* Alex Gallant 
+
+* Pierce Alworth
+
+* Elom Amouzou 
+
+
+Links to contributor's Github repositories:
+
+* Meghan Stovall: https://github.com/meghanstovall?tab=repositories
+* Alex Gallant: https://github.com/agallant121?tab=repositories
+* Pierce Alworth: https://github.com/palworth?tab=repositories
+* Elom Amouzou : https://github.com/eamouzou?tab=repositories
+
