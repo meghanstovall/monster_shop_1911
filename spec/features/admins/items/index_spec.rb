@@ -144,4 +144,43 @@ RSpec.describe 'Admin User' do
     expect(page).to have_button("Add Item")
   end
 
+  scenario "can edit item and see default image" do
+    within "#item-#{@item2.id}" do
+      click_link("Edit #{@item2.name}")
+    end
+
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items/#{@item2.id}/edit")
+    fill_in :name, with: "Hornswoggle"
+    fill_in :price, with: @item1.price
+    fill_in :description, with: @item1.description
+    fill_in :image, with: nil
+    fill_in :inventory, with: @item1.inventory
+
+    click_button('Update Item')
+    
+    expect(page).to have_content('Hornswoggle is updated.')
+
+    within "#item-#{@item2.id}" do
+      expect(page).to have_content("Hornswoggle")
+      expect(page).to have_content(@item1.price)
+      expect(page).to have_content(@item1.description)
+      expect(page).to have_css("img[src*='https://i.picsum.photos/id/866/200/300.jpg']")
+      expect(page).to have_content("Active")
+      expect(page).to have_content(@item1.inventory)
+    end
+  end
+
+  scenario "cannot edit item with faulty or missing information" do
+    within "#item-#{@item2.id}" do
+      click_link("Edit #{@item2.name}")
+    end
+
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items/#{@item2.id}/edit")
+    fill_in :name, with: "Hornswoggle"
+    fill_in :inventory, with: "-1"
+
+    click_button('Update Item')
+    expect(page).to have_content("Price is not a number and Inventory must be greater than 0")
+  end
+
 end
