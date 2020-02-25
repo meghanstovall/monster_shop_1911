@@ -86,6 +86,62 @@ RSpec.describe 'Admin User' do
 
   scenario "can add an item" do
     expect(page).to have_link("Add New Item")
+    click_link('Add New Item')
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items/new")
+
+    fill_in :name, with: @item1.name
+    fill_in :price, with: @item1.price
+    fill_in :description, with: @item1.description
+    fill_in :image, with: @item1.image
+    fill_in :inventory, with: @item1.inventory
+
+    click_button "Add Item"
+    @added_item = Item.last
+
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items")
+    expect(page).to have_content("#{@added_item.name} is saved.")
+    within "#item-#{@added_item.id}" do
+      expect(page).to have_content(@added_item.name)
+      expect(page).to have_content(@added_item.description)
+      expect(page).to have_content("Price: $100.00")
+      expect(page).to have_css("img[src*='#{@added_item.image}']")
+      expect(page).to have_content("Active")
+      expect(page).to have_content("Inventory: 12")
+    end
+  end
+
+  scenario "adds default image" do
+    expect(page).to have_link("Add New Item")
+    click_link('Add New Item')
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items/new")
+
+    fill_in :name, with: @item1.name
+    fill_in :price, with: @item1.price
+    fill_in :description, with: @item1.description
+    fill_in :image, with: nil
+    fill_in :inventory, with: @item1.inventory
+
+    click_button "Add Item"
+    @added_item = Item.last
+    within "#item-#{@added_item.id}" do
+      expect(page).to have_css("img[src*='https://i.picsum.photos/id/866/200/300.jpg']")
+    end
+  end
+
+  scenario "cannot add item with bad/missing details" do
+    click_link('Add New Item')
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items/new")
+
+    fill_in :name, with: ""
+    fill_in :price, with: @item1.price
+    fill_in :description, with: @item1.description
+    fill_in :image, with: nil
+    fill_in :inventory, with: ""
+
+    click_button "Add Item"
+
+    expect(page).to have_content("Name can't be blank, Inventory can't be blank, and Inventory is not a number")
+    expect(page).to have_button("Add Item")
   end
 
 end
