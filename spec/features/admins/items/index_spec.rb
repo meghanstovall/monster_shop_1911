@@ -57,7 +57,7 @@ RSpec.describe 'Admin User' do
       click_link("Activate #{@item2.name}")
       expect(page).to have_link("Deactivate #{@item2.name}")
     end
-    
+
     expect(page).to have_content("#{@item2.name} is now available for sale.")
 
     within "#item-#{@item3.id}" do
@@ -67,9 +67,25 @@ RSpec.describe 'Admin User' do
     end
 
     expect(page).to have_content("#{@item3.name} is no longer for sale.")
-
   end
 
+  scenario "can delete items" do
+    within "#item-#{@item2.id}" do
+      expect(page).to have_link("Delete #{@item2.name}")
+      click_link("Delete #{@item2.name}")
+    end
 
+    within "#item-#{@item3.id}" do
+      expect(page).to have_link("Delete #{@item3.name}")
+    end
+
+    expect(current_path).to eq("/admin/merchants/#{@mike.id}/items")
+    expect(page).to have_content("#{@item2.name} is now deleted.")
+    expect(page).to_not have_css("#item-#{@item2.id}")
+  end
+
+  scenario "can add an item" do
+    expect(page).to have_link("Add New Item")
+  end
 
 end
