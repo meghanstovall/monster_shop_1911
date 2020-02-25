@@ -8,6 +8,27 @@ class OrdersController <ApplicationController
   end
 
   def create
+    create_order
+  end
+
+  def index
+    @user = current_user
+  end
+
+  def update
+    update_order
+  end
+
+
+
+
+  private
+
+  def order_params
+    params.permit(:name, :address, :city, :state, :zip)
+  end
+
+  def create_order
     user = User.find_by(name: params[:name])
     order = user.orders.create(order_params)
     if order.save
@@ -31,20 +52,10 @@ class OrdersController <ApplicationController
     end
   end
 
-  def index
-    @user = current_user
-  end
-
-  def update
+  def update_order
     order = current_user.orders.find(params[:id])
     order.cancel_process
     redirect_to '/profile/orders'
     flash[:notice] = 'Order has been cancelled.'
-  end
-
-  private
-
-  def order_params
-    params.permit(:name, :address, :city, :state, :zip)
   end
 end

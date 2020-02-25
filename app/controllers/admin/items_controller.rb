@@ -4,13 +4,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    @item = Item.find(params[:item_id])
-    if params[:commit] == "Update Item"
-      @item.update(item_params)
-      save_process(@item, render_arg = :edit, message = "#{@item.name} is updated.")
-    else
-      activation_process(@item)
-    end
+    update_item
   end
 
   def destroy
@@ -64,6 +58,16 @@ class Admin::ItemsController < Admin::BaseController
     else
       flash[:error] = item.errors.full_messages.to_sentence
       render render_arg
+    end
+  end
+
+  def update_item
+    @item = Item.find(params[:item_id])
+    if params[:commit] == "Update Item"
+      @item.update(item_params)
+      save_process(@item, render_arg = :edit, message = "#{@item.name} is updated.")
+    else
+      activation_process(@item)
     end
   end
 

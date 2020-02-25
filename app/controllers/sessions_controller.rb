@@ -4,13 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user != nil && user.authenticate(params[:password])
-      login_process(user)
-    else
-      flash[:notice] = "Login Failed; Your Credentials were Incorrect"
-      render :new
-    end
+    create_session
   end
 
   def destroy
@@ -19,6 +13,10 @@ class SessionsController < ApplicationController
     flash[:success] = "You have successfully logged out."
     redirect_to "/"
   end
+
+
+
+
 
   private
 
@@ -46,6 +44,16 @@ def new_user_id
         redirect_to "/profile"
         flash[:notice] = "Already logged in as #{new_user.name}"
       end
+    end
+  end
+
+  def create_session
+    user = User.find_by(email: params[:email])
+    if user != nil && user.authenticate(params[:password])
+      login_process(user)
+    else
+      flash[:notice] = "Login Failed; Your Credentials were Incorrect"
+      render :new
     end
   end
 end

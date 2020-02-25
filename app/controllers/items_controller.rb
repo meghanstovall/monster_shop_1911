@@ -18,14 +18,7 @@ class ItemsController<ApplicationController
   end
 
   def create
-    @merchant = Merchant.find(params[:merchant_id])
-    item = @merchant.items.create(item_params)
-    if item.save
-      redirect_to "/merchants/#{@merchant.id}/items"
-    else
-      flash[:error] = item.errors.full_messages.to_sentence
-      render :new
-    end
+    create_items
   end
 
   def edit
@@ -33,14 +26,7 @@ class ItemsController<ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-    @item.update(item_params)
-    if @item.save
-      redirect_to "/items/#{@item.id}"
-    else
-      flash[:error] = @item.errors.full_messages.to_sentence
-      render :edit
-    end
+    update_items
   end
 
   def destroy
@@ -56,5 +42,25 @@ class ItemsController<ApplicationController
     params.permit(:name,:description,:price,:inventory,:image)
   end
 
+  def create_items
+    @merchant = Merchant.find(params[:merchant_id])
+    item = @merchant.items.create(item_params)
+    if item.save
+      redirect_to "/merchants/#{@merchant.id}/items"
+    else
+      flash[:error] = item.errors.full_messages.to_sentence
+      render :new
+    end
+  end
 
+  def update_items
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      redirect_to "/items/#{@item.id}"
+    else
+      flash[:error] = @item.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
 end

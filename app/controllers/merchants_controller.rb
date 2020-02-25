@@ -5,13 +5,39 @@ class MerchantsController <ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    merchant
   end
 
   def new
   end
 
   def create
+    create_merchant
+  end
+
+  def edit
+    merchant
+  end
+
+  def update
+    update_merchant
+  end
+
+  def destroy
+    Merchant.destroy(params[:id])
+    redirect_to '/merchants'
+  end
+
+
+
+
+  private
+
+  def merchant_params
+    params.permit(:name,:address,:city,:state,:zip)
+  end
+
+  def create_merchant
     merchant = Merchant.create(merchant_params)
     if merchant.save
       redirect_to merchants_path
@@ -21,11 +47,7 @@ class MerchantsController <ApplicationController
     end
   end
 
-  def edit
-    @merchant = Merchant.find(params[:id])
-  end
-
-  def update
+  def update_merchant
     @merchant = Merchant.find(params[:id])
     @merchant.update(merchant_params)
     if @merchant.save
@@ -36,15 +58,7 @@ class MerchantsController <ApplicationController
     end
   end
 
-  def destroy
-    Merchant.destroy(params[:id])
-    redirect_to '/merchants'
+  def merchant
+    @merchant = Merchant.find(params[:id])
   end
-
-  private
-
-  def merchant_params
-    params.permit(:name,:address,:city,:state,:zip)
-  end
-
 end

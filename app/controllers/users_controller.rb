@@ -5,15 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      flash[:notice] = "#{@user.name} is now logged in"
-      redirect_to '/profile'
-    else
-      flash[:error] = "#{@user.errors.full_messages.to_sentence}"
-      render :new
-    end
+    create_user
   end
 
   def show
@@ -29,15 +21,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(session[:user_id])
-    user.update(user_params)
-    if user.save
-      flash[:sucess] = "Changes Made to Profile Successfully"
-      redirect_to '/profile'
-    else
-      flash[:error] = "#{user.errors.full_messages.to_sentence}"
-      redirect_to "/profile/#{user.id}/edit"
-    end
+    update_user
   end
 
   def edit_password
@@ -45,14 +29,7 @@ class UsersController < ApplicationController
   end
 
   def update_password
-    user = User.find(session[:user_id])
-    if user.update(user_params)
-      flash[:sucess] = "Password Updated Successfully"
-      redirect_to '/profile'
-    else
-      flash[:failure] = "Passwords must match!"
-      redirect_to "/profile/#{user.id}/edit_password"
-    end
+    password_update
   end
 
   private
@@ -69,7 +46,42 @@ class UsersController < ApplicationController
       :password_confirmation)
   end
 
-    def require_user
-      render file: "/public/404" unless current_user
+  def require_user
+    render file: "/public/404" unless current_user
+  end
+
+  def create_user
+    @user = User.create(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      flash[:notice] = "#{@user.name} is now logged in"
+      redirect_to '/profile'
+    else
+      flash[:error] = "#{@user.errors.full_messages.to_sentence}"
+      render :new
     end
+  end
+
+  def update_user
+    user = User.find(session[:user_id])
+    user.update(user_params)
+    if user.save
+      flash[:sucess] = "Changes Made to Profile Successfully"
+      redirect_to '/profile'
+    else
+      flash[:error] = "#{user.errors.full_messages.to_sentence}"
+      redirect_to "/profile/#{user.id}/edit"
+    end
+  end
+
+  def password_update
+    user = User.find(session[:user_id])
+    if user.update(user_params)
+      flash[:sucess] = "Password Updated Successfully"
+      redirect_to '/profile'
+    else
+      flash[:failure] = "Passwords must match!"
+      redirect_to "/profile/#{user.id}/edit_password"
+    end
+  end
 end
