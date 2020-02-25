@@ -75,20 +75,13 @@ When registering, fill in all the fields with your information and remember, you
 - If there is a specific gem you'd like to use in the project, please get permission from the creators first.
 
 
-## Contributors:
-* Meghan Stovall 
+## Contributors and links to their Github Repositories:
 
-* Alex Gallant 
+* Meghan Stovall: https://github.com/meghanstovall?tab=repositories 
 
-* Pierce Alworth
-
-* Elom Amouzou 
-
-
-Links to contributor's Github repositories:
-
-* Meghan Stovall: https://github.com/meghanstovall?tab=repositories
 * Alex Gallant: https://github.com/agallant121?tab=repositories
+
 * Pierce Alworth: https://github.com/palworth?tab=repositories
+
 * Elom Amouzou : https://github.com/eamouzou?tab=repositories
 
