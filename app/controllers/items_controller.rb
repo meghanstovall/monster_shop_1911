@@ -1,12 +1,8 @@
 class ItemsController<ApplicationController
 
   def index
-    if params[:merchant_id]
-      @merchant = Merchant.find(params[:merchant_id])
-      @items = @merchant.items
-    else
-      @items = Item.all
-    end
+    index_step_1 if params[:merchant_id]
+    @items = Item.all if params[:merchant_id] == nil
   end
 
   def show
@@ -30,11 +26,11 @@ class ItemsController<ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    Review.where(item_id: item.id).destroy_all
-    item.destroy
+    destroy_process
     redirect_to "/items"
   end
+
+
 
   private
 
@@ -42,25 +38,47 @@ class ItemsController<ApplicationController
     params.permit(:name,:description,:price,:inventory,:image)
   end
 
+  def index_step_1
+    @merchant = Merchant.find(params[:merchant_id])
+    @items = @merchant.items
+  end
+
+  def destroy_process
+    item = Item.find(params[:id])
+    Review.where(item_id: item.id).destroy_all
+    item.destroy
+  end
+
   def create_items
     @merchant = Merchant.find(params[:merchant_id])
+    save_process
+  end
+
+  def save_process
     item = @merchant.items.create(item_params)
-    if item.save
-      redirect_to "/merchants/#{@merchant.id}/items"
-    else
-      flash[:error] = item.errors.full_messages.to_sentence
-      render :new
-    end
+    redirect_to "/merchants/#{@merchant.id}/items" if item.save == true
+    create_save_error(item) if item.save == false
+  end
+
+  def create_save_error(item)
+    flash[:error] = item.errors.full_messages.to_sentence
+    render :new
   end
 
   def update_items
     @item = Item.find(params[:id])
-    @item.update(item_params)
-    if @item.save
-      redirect_to "/items/#{@item.id}"
-    else
-      flash[:error] = @item.errors.full_messages.to_sentence
-      render :edit
-    end
+    update_process(item = @item)
   end
+
+  def update_process(item)
+    item.update(item_params)
+    redirect_to "/items/#{item.id}" if item.save == true
+    update_save_error(item) if item.save == false
+  end
+
+  def update_save_error(item)
+    flash[:error] = @item.errors.full_messages.to_sentence
+    render :edit
+  end
+
 end
