@@ -19,6 +19,27 @@ An online, e-commerce application for an easier and more convenient shopping exp
 ### Many-to-Many and One-to-Many Relationships
 * This project utilizes both one-to-many and many-to-many relationships, connecting multiple tables in our database for an easier user experience.
 
+![image](https://user-images.githubusercontent.com/52808022/75277723-cc8a2200-57c5-11ea-89be-5e897431213d.png)
+
+## Access
+Start shopping online, hassle-free, by visiting Website
+
+## Work on this project yourself!
+-To get started, please visit Website and clone this project to your local machine!
+
+-Once you are on the site, look for the green 'Clone or Download' button on the right side of the web page.
+
+![Screen Shot 2020-02-25 at 11 32 32 AM](https://user-images.githubusercontent.com/52808022/75276092-bf1f6880-57c2-11ea-977a-8f885322cd15.png)
+
+Next, copy the SSH Key after you have pressed the green 'Clone or Download' button.
+
+![Screen Shot 2020-02-25 at 11 42 13 AM](https://user-images.githubusercontent.com/52808022/75276756-02c6a200-57c4-11ea-9026-aa60d1ff1e62.png)
+
+Then, go to the directory in your temrinal where you would like
+this project to be. Type in 'git clone' and the paste the copied SSH key in to your terminal before pressing enter.
+
+![Screen Shot 2020-02-25 at 11 48 02 AM](https://user-images.githubusercontent.com/52808022/75277652-a2386480-57c5-11ea-935e-af97b41d8bbb.png)
+
 
 ## Application Resources
 
