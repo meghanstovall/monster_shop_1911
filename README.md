@@ -40,6 +40,7 @@ this project to be. Type in 'git clone' and the paste the copied SSH key in to y
 
 ![Screen Shot 2020-02-25 at 11 48 02 AM](https://user-images.githubusercontent.com/52808022/75277652-a2386480-57c5-11ea-935e-af97b41d8bbb.png)
 
+You can now move in to the project and open it from your text editor.
 
 ## Application Resources
 
@@ -60,7 +61,14 @@ this project to be. Type in 'git clone' and the paste the copied SSH key in to y
 
 ## User Roles
 
-1. Visitor - this type of user is anonymously browsing our site and is not logged in
+1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. However, before you are able to checkout, you will need to register as a new user.
+
+![Screen Shot 2020-02-25 at 12 15 31 PM](https://user-images.githubusercontent.com/52808022/75279470-e711ca80-57c8-11ea-9847-84aa1add641c.png)
+
+When registering, fill in all the fields with your information and remember, your email address must be unique!
+
+![Screen Shot 2020-02-25 at 12 20 09 PM](https://user-images.githubusercontent.com/52808022/75279721-538cc980-57c9-11ea-94b1-6030d19ec058.png)
+
 2. Regular User - this user is registered and logged in to the application while performing their work; can place items in a cart and create an order
 3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
