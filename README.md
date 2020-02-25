@@ -76,6 +76,4 @@ When registering, fill in all the fields with your information and remember, you
 3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
 
 
-4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
-
-## Navigation (Nav Bar)
+4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
