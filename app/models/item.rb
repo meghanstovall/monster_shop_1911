@@ -40,4 +40,12 @@ class Item < ApplicationRecord
     .order('quantity')
     .limit(5).to_a
   end
+
+  def updates_active
+    if active? == true
+      update(active?: false)
+    else
+      update(active?: true)
+    end
+  end
 end
