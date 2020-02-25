@@ -5,7 +5,7 @@ class Admin::ItemsController < Admin::BaseController
 
   def update
     item = Item.find(params[:item_id])
-    item.update_active
+    item.updates_active
     if item.active? == false
       flash[:update] = "#{item.name} is no longer for sale."
     else
