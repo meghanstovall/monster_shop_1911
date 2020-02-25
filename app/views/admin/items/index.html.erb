@@ -1,9 +1,9 @@
 <br>
-<center><p><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p></center>
+<center><p><%= link_to "Add New Item", "/admin/merchants/#{@merchant.id}/items/new" %></p></center>
 
 <% @merchant.items.each do |item| %>
   <section id='item-<%=item.id%>'>
-    <p>Name: <%= item.name %> </p>
+    <h4><p>Name: <%= item.name %> </p></h4>
     <p>Description: <%= item.description %> </p>
     <p>Price: <%=number_to_currency(item.price) %> </p>
     <%= image_tag(item.image, height: '100', width: '100') %>
