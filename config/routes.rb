@@ -1,19 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get '/', to: 'welcome#index'
-  get "/merchants", to: "merchants#index"
-  get "/merchants/new", to: "merchants#new"
-  get "/merchants/:id", to: "merchants#show"
-  post "/merchants", to: "merchants#create"
-  get "/merchants/:id/edit", to: "merchants#edit"
-  patch "/merchants/:id", to: "merchants#update"
-  delete "/merchants/:id", to: "merchants#destroy"
 
-  get "/items", to: "items#index"
-  get "/items/:id", to: "items#show"
-  get "/items/:id/edit", to: "items#edit"
-  patch "/items/:id", to: "items#update"
+  resources :merchants
+
+  resources :items, only: [:index, :show, :edit, :update]
+
   get "/merchants/:merchant_id/items", to: "items#index"
   get "/merchants/:merchant_id/items/new", to: "items#new"
   post "/merchants/:merchant_id/items", to: "items#create"
@@ -22,9 +14,7 @@ Rails.application.routes.draw do
   get "/items/:item_id/reviews/new", to: "reviews#new"
   post "/items/:item_id/reviews", to: "reviews#create"
 
-  get "/reviews/:id/edit", to: "reviews#edit"
-  patch "/reviews/:id", to: "reviews#update"
-  delete "/reviews/:id", to: "reviews#destroy"
+  resources :reviews, only: [:edit, :update, :destroy]
 
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
@@ -32,11 +22,8 @@ Rails.application.routes.draw do
   delete "/cart/:item_id", to: "cart#remove_item"
   patch "/cart/:item_id/:quantity", to: "cart#edit_quantity"
 
+  resources :orders, only: [:new, :create, :show, :update]
 
-  get "/orders/new", to: "orders#new"
-  post "/orders", to: "orders#create"
-  get "/orders/:id", to: "orders#show"
-  patch "/orders/:id", to: "orders#update"
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
@@ -56,11 +43,11 @@ Rails.application.routes.draw do
 
 
   namespace :merchant do
-  #only admin users will be able to reach this resource
-  get '/dashboard', to: "dashboard#show"
-  get '/:merchant_id/dashboard', to: "dashboard#show"
-  get '/:merchant_id/items', to: "items#index"
-end
+  #only merchant users will be able to reach this resource
+    get '/dashboard', to: "dashboard#show"
+    get '/:merchant_id/dashboard', to: "dashboard#show"
+    get '/:merchant_id/items', to: "items#index"
+  end
 
   namespace :admin do
   #only admin users will be able to reach this resource
