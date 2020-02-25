@@ -59,9 +59,9 @@ You can now move in to the project and open it from your text editor.
 
 - If there is a specific gem you'd like to use in the project, please get permission from the creators first
 
-## User Roles
+## User Roles for Monster Shop
 
-1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. However, before you are able to checkout, you will need to register as a new user.
+1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. However, before you are able to checkout with any merchandise, you will need to register as a new user.
 
 ![Screen Shot 2020-02-25 at 12 15 31 PM](https://user-images.githubusercontent.com/52808022/75279470-e711ca80-57c8-11ea-9847-84aa1add641c.png)
 
@@ -69,8 +69,13 @@ When registering, fill in all the fields with your information and remember, you
 
 ![Screen Shot 2020-02-25 at 12 20 09 PM](https://user-images.githubusercontent.com/52808022/75279721-538cc980-57c9-11ea-94b1-6030d19ec058.png)
 
-2. Regular User - this user is registered and logged in to the application while performing their work; can place items in a cart and create an order
+2. Regular User - Great! Now you are a registered user! This user is registered and logged in to the application while performing their work; can place items in a cart and create an order!
+
+![image](https://user-images.githubusercontent.com/52808022/75280096-0c530880-57ca-11ea-89ef-332af1dedbe1.png)
+
 3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
+
+
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work
 
 ## Order Status
