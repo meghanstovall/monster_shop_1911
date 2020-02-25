@@ -26,6 +26,8 @@ class CartController < ApplicationController
     adjust_quantity
   end
 
+
+
   private
 
   def require_not_admin
@@ -51,5 +53,5 @@ class CartController < ApplicationController
       remove_item
     end
   end
-  
+
 end
