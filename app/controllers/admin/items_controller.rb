@@ -14,4 +14,11 @@ class Admin::ItemsController < Admin::BaseController
     redirect_to "/admin/merchants/#{params[:merchant_id]}/items"
   end
 
+  def destroy
+    item = Item.find(params[:item_id])
+    item.destroy
+    flash[:destroy] = "#{item.name} is now deleted."
+    redirect_to "/admin/merchants/#{params[:merchant_id]}/items"
+  end
+
 end
