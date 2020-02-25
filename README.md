@@ -16,6 +16,9 @@ BE Mod 2 Week 4/5 Group Project
 ### Databases
 * Design and diagram a Database Schema
 
+### Many-to-Many and One-t0-Many Relationships
+* This project utilizes both one-to-many and many-to-many relationships, connecting multiple tables in our database for an easier user experience.
+
 ## Application Resources
 
 - Uses Rails 5.1.x
