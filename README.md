@@ -25,7 +25,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 Start shopping online, hassle-free, by visiting Website
 
 ## Work on this project yourself!
--To get started, please visit Website and clone this project to your local machine!
+-To get started, please visit https://github.com/meghanstovall/monster_shop_1911 and clone this project to your local machine!
 
 -Once you are on the site, look for the green 'Clone or Download' button on the right side of the web page.
 
