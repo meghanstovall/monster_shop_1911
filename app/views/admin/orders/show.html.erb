@@ -11,7 +11,11 @@
         <h5>Quantity of Items in Order: <%= item_order.order.merchant_quantity(@merchant.id) %></h5>
         <h5>Status: <%= item_order.status %></h5>
 
-        <h5><%= link_to "Fulfill Item", "/admin/merchants/#{@merchant.id}/orders/#{@order.id}/items/#{item_order.item.id}", method: :patch %></h5>
+        <% if item_order.quantity > item_order.item.inventory %>
+          <h5>Cannot fulfill this item: Not enough inventory</h5>
+        <% else %>
+          <h5><%= link_to "Fulfill Item", "/admin/merchants/#{@merchant.id}/orders/#{@order.id}/items/#{item_order.item.id}", method: :patch %></h5>
+        <% end %>
       <% end %>
     </section>
   <% end %>
