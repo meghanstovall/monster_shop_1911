@@ -29,9 +29,6 @@ class UsersController < ApplicationController
     password_update
   end
 
-
-
-
   private
 
   def user_params
@@ -111,4 +108,5 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
     flash[:success] = "#{@user.name} is logged in."
   end
+
 end

@@ -16,7 +16,7 @@ bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', ci
 merchant_user2 = bike_shop.users.create!(name: "Lance Armstrong", street_address: "571 Cheater St",
   city: "Colorado Springs", state: "CO", zip: "80206", email: "merchant2@gmail.com", password: "hamburger3", role: 2)
 
-dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St', city: 'Denver', state: 'CO', zip: 80210)
+dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 merchant_user = dog_shop.users.create!(name: "Ben", street_address: "891 Penn St",
                           city: "Denver",state: "CO",zip: "80206",email: "merchant@gmail.com",password: "hamburger2", role: 2)
 #Regular user to login in with
