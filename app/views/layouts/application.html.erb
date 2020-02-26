@@ -16,7 +16,7 @@
       <%= link_to "All Items", "/items"%>
       <%= link_to "Cart: #{cart.total_items}", "/cart" unless current_admin %>
       <% if current_admin %>
-        <%= link_to "Admin Dashboard", "/admin" %>
+        <%= link_to "Admin Dashboard", "/admin/dashboard" %>
         <%= link_to "All Users", "/admin/users" %>
       <% end %>
       <% if current_merchant %>

@@ -20,7 +20,13 @@
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
       <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
-      <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
+      <% if current_user == nil %>
+        <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
+      <% elsif current_user %>
+        <% if current_user.role != "admin" %>
+          <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
+          <% end %>
+      <% end %>
     </section>
   </section>
 </center>
