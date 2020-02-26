@@ -20,7 +20,7 @@
         <%= link_to "All Users", "/admin/users" %>
       <% end %>
       <% if current_merchant %>
-        <%= link_to "Merchant Dashboard", "/merchant" %>
+        <%= link_to "Merchant Dashboard", "/merchant/#{current_user.merchant_id}/dashboard" %>
       <% end %>
       <% if current_user %>
         <%= link_to "My Profile", "/profile" %>
