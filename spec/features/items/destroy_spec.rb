@@ -4,13 +4,23 @@ RSpec.describe 'item delete', type: :feature do
   describe 'when I visit an item show page' do
     it 'I can delete an item' do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant_user = bike_shop.users.create!(name: "Ben", street_address: "891 Penn St. Denver, CO",
+                                city: "denver",state: "CO",zip: "80206",email: "merchant@gmail.com",password: "hamburger2", role: 2)
+
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
+      visit '/'
+      click_link 'Login'
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: merchant_user.email
+      fill_in :password, with: 'hamburger2'
+      click_button 'Log In'
       visit "/items/#{chain.id}"
 
       expect(page).to have_link("Delete Item")
 
-      click_on "Delete Item"
+      click_link "Delete Item"
 
       expect(current_path).to eq("/items")
       expect("item-#{chain.id}").to be_present
@@ -18,8 +28,19 @@ RSpec.describe 'item delete', type: :feature do
 
     it 'I can delete items and it deletes reviews' do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+      merchant_user = bike_shop.users.create!(name: "Ben", street_address: "891 Penn St. Denver, CO",
+                                city: "denver",state: "CO",zip: "80206",email: "merchant@gmail.com",password: "hamburger2", role: 2)
+
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       review_1 = chain.reviews.create(title: "Great place!", content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
+
+      visit '/'
+      click_link 'Login'
+      expect(current_path).to eq('/login')
+
+      fill_in :email, with: merchant_user.email
+      fill_in :password, with: 'hamburger2'
+      click_button 'Log In'
 
       visit "/items/#{chain.id}"
 

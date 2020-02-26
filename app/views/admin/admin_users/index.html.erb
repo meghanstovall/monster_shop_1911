@@ -2,8 +2,11 @@
 
 <% @users.each do |user| %>
   <section id='user-<%= user.id %>'>
-    <h3>Name: <%= link_to "#{user.name}", "/admin/users/#{user.id}" %></h3>
-    <h4>Role: <%= user.role %></h4>
-    <h5>Registered Since: <%= user.created_at.strftime("%Y-%m-%d") %></h5>
+    <h3>Name:
+      <%= link_to "#{user.name}", "/admin/users/#{user.id}" %></h3>
+    <h4>Role:
+      <%= user.role %></h4>
+    <h5>Registered Since:
+      <%= user.created_at.strftime("%Y-%m-%d") %></h5>
   </section>
 <% end %>
