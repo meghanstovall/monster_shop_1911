@@ -4,7 +4,17 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    update_item
+    if params[:item_id] != nil && params[:order_id] != nil && params[:merchant_id] != nil
+      item = Item.find(params[:item_id])
+      order = Order.find(params[:order_id])
+      merchant = Merchant.find(params[:merchant_id])
+      item.fulfill_item(order)
+      item.update_inventory(order)
+      flash[:notice] = "You have fulfilled the order for #{item.name}"
+      redirect_to "/admin/merchants/#{merchant.id}/orders/#{order.id}"
+    else
+      update_item
+    end
   end
 
   def destroy
