@@ -3,11 +3,16 @@
   <h3><%= @order.address%>, <%= @order.city%>, <%= @order.state%>, <%= @order.zip%></h3>
 
   <% @order.item_orders.each do |item_order| %>
-    <% if item_order.item.merchant == @merchant %>
-      <h5>Item: <%= link_to item_order.item.name, "/items/#{item_order.item.id}" %></h5>
-      <img src= <%= item_order.item.image %>>
-      <h5> Price: <%= item_order.item.price %></h5>
-      <h5>Quantity of Items in Order: <%= item_order.order.merchant_quantity(@merchant.id) %></h5>
-    <% end %>
+    <section id="item-<%= item_order.item.id %>">
+      <% if item_order.item.merchant == @merchant %>
+        <h5>Item: <%= link_to item_order.item.name, "/items/#{item_order.item.id}" %></h5>
+        <img src= <%= item_order.item.image %>>
+        <h5>Price: <%= item_order.item.price %></h5>
+        <h5>Quantity of Items in Order: <%= item_order.order.merchant_quantity(@merchant.id) %></h5>
+        <h5>Status: <%= item_order.status %></h5>
+
+        <h5><%= link_to "Fulfill Item", "/admin/merchants/#{@merchant.id}/orders/#{@order.id}/items/#{item_order.item.id}", method: :patch %></h5>
+      <% end %>
+    </section>
   <% end %>
 <% end %>
