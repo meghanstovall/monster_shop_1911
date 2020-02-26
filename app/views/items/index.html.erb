@@ -2,7 +2,11 @@
   <h1><%= link_to @merchant.name, "/merchants/#{@merchant.id}"%>
     <span>
       Items</span></h1>
+      <% if current_user %>
+      <ul><% if current_user.merchant_id == @merchant.id || current_admin %></ul>
   <p align="center"><%= link_to "Add New Item", "/merchants/#{@merchant.id}/items/new" %></p>
+  <% end %>
+  <% end %>
 <% else %>
   <h1>All Items</h1>
 <% end %>
