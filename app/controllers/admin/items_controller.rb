@@ -4,7 +4,13 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    update_item
+    if params[:order_id] != nil
+      item = Item.find(params[:item_id])
+      order = Order.find(params[:order_id])
+      fulfill_update_inventory(item, order)
+    else
+      update_item
+    end
   end
 
   def destroy
@@ -80,4 +86,10 @@ class Admin::ItemsController < Admin::BaseController
     redirect_to "/admin/merchants/#{params[:merchant_id]}/items"
   end
 
+  def fulfill_update_inventory(item, order)
+    item.fulfill_item(order)
+    item.update_inventory(order)
+    flash[:notice] = "You have fulfilled the order for #{item.name}"
+    redirect_to "/admin/merchants/#{item.merchant.id}/orders/#{order.id}"
+  end
 end

@@ -49,6 +49,7 @@
       <th>Quantity</th>
       <th>Subtotal</th>
     </tr>
+
     <% @order.item_orders.each do |item_order|%>
       <tr>
         <section id="item-<%=item_order.item_id%>">
@@ -98,6 +99,7 @@
     <p>Order Last Updated On:
       <%= @order.updated_at %></p>
   </section>
+
 
   <% if @order.status != 'shipped' %>
     <%= button_to 'Cancel', "/orders/#{@order.id}", method: :patch %>

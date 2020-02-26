@@ -5,17 +5,6 @@ An online, e-commerce application for an easier and more convenient shopping exp
 
 "Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
 
-
-### Rails
-* Create routes for namespaced routes
-* Use Sessions to store information about a user and implement login/logout functionality
-* Use filters (e.g. `before_action`) in a Rails controller
-* Limit functionality to authorized users
-* Use BCrypt to hash user passwords before storing in the database
-
-### Databases
-* Design and diagram a Database Schema
-
 ### Many-to-Many and One-to-Many Relationships
 * This project utilizes both one-to-many and many-to-many relationships, connecting multiple tables in our database for an easier user experience.
 
@@ -25,7 +14,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 Start shopping online, hassle-free, by visiting Website
 
 ## Work on this project yourself!
--To get started, please visit Website and clone this project to your local machine!
+-To get started, please visit https://github.com/meghanstovall/monster_shop_1911 and clone this project to your local machine!
 
 -Once you are on the site, look for the green 'Clone or Download' button on the right side of the web page.
 
@@ -41,23 +30,6 @@ this project to be. Type in 'git clone' and the paste the copied SSH key in to y
 ![Screen Shot 2020-02-25 at 11 48 02 AM](https://user-images.githubusercontent.com/52808022/75277652-a2386480-57c5-11ea-935e-af97b41d8bbb.png)
 
 You can now move in to the project and open it from your text editor.
-
-## Application Resources
-
-- Uses Rails 5.1.x
-- Uses PostgreSQL
-- Uses 'bcrypt' for authentication
-- Controller and model code was be tested via feature tests and model tests, respectively
-- Created using good GitHub branching, team code reviews via GitHub comments, and use of the project planning tool, github projects
-
-## Permitted
-
-- To use FactoryBot to speed up your test development
-- To use "rails generators" to speed up your app development
-
-## Permission
-
-- If there is a specific gem you'd like to use in the project, please get permission from the creators first
 
 ## User Roles for Monster Shop
 
@@ -77,3 +49,39 @@ When registering, fill in all the fields with your information and remember, you
 
 
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
+
+### Rails
+* Create routes for namespaced routes
+* Use Sessions to store information about a user and implement login/logout functionality
+* Use filters (e.g. `before_action`) in a Rails controller
+* Limit functionality to authorized users
+* Use BCrypt to hash user passwords before storing in the database
+
+## Application Resources
+
+- Uses Rails 5.1.x
+- Uses PostgreSQL
+- Uses 'bcrypt' for authentication
+- Controller and model code was be tested via feature tests and model tests, respectively
+- Created using good GitHub branching, team code reviews via GitHub comments, and use of the project planning tool, github projects
+
+## Permitted
+
+- To use FactoryBot to speed up your test development
+- To use "rails generators" to speed up your app development
+
+## Permission
+
+- If there is a specific gem you'd like to use in the project, please get permission from the creators first.
+
+
+## Contributors and links to their Github Repositories:
+
+* Meghan Stovall: https://github.com/meghanstovall?tab=repositories 
+
+* Alex Gallant: https://github.com/agallant121?tab=repositories
+
+* Pierce Alworth: https://github.com/palworth?tab=repositories
+
+* Elom Amouzou : https://github.com/eamouzou?tab=repositories
+

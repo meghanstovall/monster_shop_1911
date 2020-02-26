@@ -5,6 +5,7 @@
     <%= current_user.merchant.state%>,
     <%= current_user.merchant.zip%></h3>
 
+
   <% if current_user.merchant.item_orders != [] %>
     <% current_user.merchant.item_orders.each do |item_order| %>
       <h5>Order ID:
