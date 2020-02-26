@@ -24,8 +24,12 @@
       <% else %>
         <p style="color:red">Inactive</p>
       <% end %>
+      <% if current_user %>
+      <ul><% if current_user.merchant_id == @item.merchant.id || current_admin %></ul>
       <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
       <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
+      <% end %>
+      <% end %>
       <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
       <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
     </section>
