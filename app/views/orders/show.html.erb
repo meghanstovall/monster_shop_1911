@@ -42,7 +42,6 @@
         <td><p>Subtotal: <%= number_to_currency(item_order.subtotal)%></p></td>
         <td><p>Description: <%= item_order.item.description %></p></td>
         <td><p>Thumbnail: <%= image_tag(item_order.item.image, size: "50x45") %></p></td>
-
       </section>
     </tr>
   <% end %>
@@ -52,6 +51,7 @@
   <p>Total Item Quantity: <%= @order.total_item_quantity %> </p>
   <p>Total: <%=number_to_currency(@order.grandtotal)%></p>
 </section>
+
 <section id="datecreated">
   <p>Order Made On: <%= @order.created_at%></p>
   <p>Order Last Updated On: <%= @order.updated_at %></p>
