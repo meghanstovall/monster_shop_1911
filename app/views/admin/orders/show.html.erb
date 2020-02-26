@@ -1,0 +1,13 @@
+<% if @merchant != nil %>
+  <h1> <%= @order.name %> </h1>
+  <h3><%= @order.address%>, <%= @order.city%>, <%= @order.state%>, <%= @order.zip%></h3>
+
+  <% @order.item_orders.each do |item_order| %>
+    <% if item_order.item.merchant == @merchant %>
+      <h5>Item: <%= link_to item_order.item.name, "/items/#{item_order.item.id}" %></h5>
+      <img src= <%= item_order.item.image %>>
+      <h5> Price: <%= item_order.item.price %></h5>
+      <h5>Quantity of Items in Order: <%= item_order.order.merchant_quantity(@merchant.id) %></h5>
+    <% end %>
+  <% end %>
+<% end %>
