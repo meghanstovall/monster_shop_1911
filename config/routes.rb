@@ -2,17 +2,13 @@ Rails.application.routes.draw do
 
   get '/', to: 'welcome#index'
 
-  resources :merchants
+  resources :merchants do
+    resources :items, only: [:index, :new, :create]
+  end
 
-  resources :items, only: [:index, :show, :edit, :update]
-
-  get "/merchants/:merchant_id/items", to: "items#index"
-  get "/merchants/:merchant_id/items/new", to: "items#new"
-  post "/merchants/:merchant_id/items", to: "items#create"
-  delete "/items/:id", to: "items#destroy"
-
-  get "/items/:item_id/reviews/new", to: "reviews#new"
-  post "/items/:item_id/reviews", to: "reviews#create"
+  resources :items, only: [:index, :show, :edit, :update, :destroy] do
+    resources :reviews, only: [:new, :create]
+  end
 
   resources :reviews, only: [:edit, :update, :destroy]
 
@@ -23,7 +19,6 @@ Rails.application.routes.draw do
   patch "/cart/:item_id/:quantity", to: "cart#edit_quantity"
 
   resources :orders, only: [:new, :create, :show, :update]
-
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
@@ -57,8 +52,10 @@ Rails.application.routes.draw do
     patch '/orders/:id', to: "dashboard#update"
     patch '/merchants/:id', to: "merchants#update"
     get '/merchants/:merchant_id', to: "dashboard#show"
+    get '/merchants/:merchant_id/orders/:order_id', to: "orders#show"
     get '/merchants/:merchant_id/items', to: "items#index"
     patch '/merchants/:merchant_id/items/:item_id', to: "items#update"
+    patch '/merchants/:merchant_id/orders/:order_id/items/:item_id', to: "items#update"
     delete '/merchants/:merchant_id/items/:item_id', to: "items#destroy"
     get '/merchants/:merchant_id/items/new', to: "items#new"
     post '/merchants/:merchant_id/items', to: 'items#create'

@@ -63,6 +63,28 @@ describe Item, type: :model do
       @chain.updates_active
       expect(@chain.active?).to eq(true)
     end
+
+    it "fulfill_item" do
+      user = User.create(name: "Mike",street_address: "456 Logan St. Denver, CO",
+                                city: "denver",state: "CO",zip: "80206",email: "new_email1@gmail.com",password: "hamburger1", role: 1)
+      order = user.orders.create(name: user.name, address: user.street_address, city: user.city, state: user.state, zip: user.zip)
+      tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      tire_order = ItemOrder.create!(item: tire, order: order, price: tire.price, quantity: 7)
+
+      tire.fulfill_item(order)
+      expect(tire.item_orders.first.status).to eq("fulfilled")
+    end
+
+    it "update_inventory" do
+      user = User.create(name: "Mike",street_address: "456 Logan St. Denver, CO",
+                                city: "denver",state: "CO",zip: "80206",email: "new_email1@gmail.com",password: "hamburger1", role: 1)
+      order = user.orders.create(name: user.name, address: user.street_address, city: user.city, state: user.state, zip: user.zip)
+      tire = @bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+      tire_order = ItemOrder.create!(item: tire, order: order, price: tire.price, quantity: 7)
+
+      tire.update_inventory(order)
+      expect(tire.inventory).to eq(5)
+    end
   end
 
   describe "class methods" do

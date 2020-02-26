@@ -47,4 +47,18 @@ class Item < ApplicationRecord
       update(active?: true)
     end
   end
+
+  def fulfill_item(order)
+    item_orders.each do |item_order|
+      if item_order.order == order
+        item_order.update(status: "fulfilled")
+      end
+    end
+  end
+
+  def update_inventory(order)
+    item_order = order.item_orders.where(item: self)
+    new_amount = inventory - item_order.first.quantity
+    update(inventory: new_amount)
+  end
 end

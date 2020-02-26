@@ -4,13 +4,13 @@
     <title>Monster Shop</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
 
-    <nav class = "topnav" id="top-nav">
+    <nav class="topnav" id="top-nav">
       <%= link_to "Home", "/"%>
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
@@ -20,12 +20,13 @@
         <%= link_to "All Users", "/admin/users" %>
       <% end %>
       <% if current_merchant %>
-        <%= link_to "Merchant Dashboard", "/merchant" %>
+        <%= link_to "Merchant Dashboard", "/merchant/#{current_user.merchant_id}/dashboard" %>
       <% end %>
       <% if current_user %>
         <%= link_to "My Profile", "/profile" %>
-        <%= link_to "Logout", "/", method: :delete  %>
-        <p>Logged in as <%= current_user.name %></p>
+        <%= link_to "Logout", "/", method: :delete %>
+        <p>Logged in as
+          <%= current_user.name %></p>
       <% else %>
         <%= link_to "Register as New User", "/register" %>
         <%= link_to "Login", "/login" %>
@@ -36,7 +37,7 @@
     </nav>
 
     <% flash.each do |name, msg| %>
-      <div class= "<%=name%>-flash">
+      <div class="<%=name%>-flash">
         <p><%= msg %></p>
       </div>
     <% end %>
