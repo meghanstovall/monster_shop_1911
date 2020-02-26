@@ -8,12 +8,23 @@
 
 Merchant.destroy_all
 Item.destroy_all
-
-#merchants
+#Admin user to login with
+admin = User.create!(name: "Neo", street_address: "953 Matrix Ave",
+  city: "New York", state: "NY", zip: "54874", email: "admin@gmail.com", password: "admin", role: 3)
+#merchants and merchant employees
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+merchant_user2 = bike_shop.users.create!(name: "Lance Armstrong", street_address: "571 Cheater St",
+  city: "Colorado Springs", state: "CO", zip: "80206", email: "merchant2@gmail.com", password: "hamburger3", role: 2)
+
 dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
-merchant_user = dog_shop.users.create!(name: "Ben", street_address: "891 Penn St. Denver, CO",
-                          city: "denver",state: "CO",zip: "80206",email: "merchant@gmail.com",password: "hamburger2", role: 2)
+merchant_user = dog_shop.users.create!(name: "Ben", street_address: "891 Penn St",
+                          city: "Denver",state: "CO",zip: "80206",email: "merchant@gmail.com",password: "hamburger2", role: 2)
+#Regular user to login in with
+regular_user = User.create!(name: "Kyle", street_address: "6578 Penn St NW",
+                          city: "Los Angeles",state: "CA",zip: "90036",email: "regular_user@gmail.com",password: "regular", role: 1)
+
+
+
 
 #bike_shop items
 tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
