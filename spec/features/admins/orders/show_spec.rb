@@ -20,17 +20,17 @@ RSpec.describe "Admin user" do
 
     @user_order = @regular_user.orders.create(name: @regular_user.name, address: @regular_user.street_address, city: @regular_user.city, state: @regular_user.state, zip: @regular_user.zip)
     @tire_order = ItemOrder.create!(item: @tire, order: @user_order, price: @tire.price, quantity: 7)
-    @paper_order = ItemOrder.create!(item: @paper, order: @user_order, price: @paper.price, quantity: 4)
+    @paper_order = ItemOrder.create!(item: @paper, order: @user_order, price: @paper.price, quantity: 10)
 
     visit '/login'
     fill_in :email, with: @admin_user.email
     fill_in :password, with: @admin_user.password
     click_button "Log In"
-
-    visit "/admin/merchants/#{@meg.id}/orders/#{@user_order.id}"
   end
 
   it "can go to orders show page" do
+    visit "/admin/merchants/#{@meg.id}/orders/#{@user_order.id}"
+
     expect(page).to have_content(@user_order.name)
     expect(page).to have_content(@user_order.address)
     expect(page).to have_content(@user_order.city)
@@ -49,11 +49,22 @@ RSpec.describe "Admin user" do
   end
 
   it "can fulfill their items in te order" do
+    visit "/admin/merchants/#{@meg.id}/orders/#{@user_order.id}"
+
     within "#item-#{@tire.id}" do
       click_link "Fulfill Item"
     end
     expect(current_path).to eq("/admin/merchants/#{@meg.id}/orders/#{@user_order.id}")
     expect(page).to have_content("Status: fulfilled")
     expect(page).to have_content("You have fulfilled the order for #{@tire.name}")
+  end
+
+  it "cant see fulfill button if quantity is greater than inventory" do
+    visit "/admin/merchants/#{@mike.id}/orders/#{@user_order.id}"
+
+    within "#item-#{@paper.id}" do
+      expect(page).to_not have_link("Fulfill Item")
+      expect(page).to have_content("Cannot fulfill this item: Not enough inventory")
+    end
   end
 end
