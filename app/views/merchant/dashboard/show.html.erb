@@ -1,6 +1,6 @@
 <% if current_user.merchant != nil %>
-  <h1><%= current_user.merchant.name %></h1>
-  <h3><%= current_user.merchant.address%>,
+  <h1><%= current_user.merchant.name %>:</h1>
+  <h3>Address: <%= current_user.merchant.address%>,
     <%= current_user.merchant.city%>,
     <%= current_user.merchant.state%>,
     <%= current_user.merchant.zip%></h3>
@@ -18,5 +18,5 @@
         <%= number_to_currency(item_order.order.merchant_total(current_user.merchant.id)) %></h5>
     <% end %>
   <% end %>
-  <%= link_to 'Our store items',"/merchant/#{current_user.merchant.id}/items" %>
+  <h3><%= link_to "Our Store's Items", "/merchants/#{current_user.merchant.id}/items" %></h3>
 <% end %>
