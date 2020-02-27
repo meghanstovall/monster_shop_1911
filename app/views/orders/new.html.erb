@@ -51,7 +51,10 @@
 
       <%= label_tag :zip %>
       <%= number_field_tag :zip %>
-
-      <%= submit_tag 'Create Order' %>
-    <% end %>
+       <% if current_user == nil %>
+        <h3> <%= "Must be logged in to complete orders."%></h3>
+        <% else %> 
+        <%= submit_tag 'Create Order' %>
+       <% end %>
+     <% end %>
   </center>
