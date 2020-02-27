@@ -1,8 +1,8 @@
 <% if current_user.merchant != nil %>
   <h1><%= current_user.merchant.name %></h1>
-  <h3><%= current_user.merchant.address%>,
-    <%= current_user.merchant.city%>,
-    <%= current_user.merchant.state%>,
+  <h3>Address:<%= current_user.merchant.address%>,
+    <h1> <%= current_user.merchant.city%>,</h1>
+    <h3> <%= current_user.merchant.state%>,
     <%= current_user.merchant.zip%></h3>
 
 
