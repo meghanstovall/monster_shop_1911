@@ -17,11 +17,12 @@ RSpec.describe("Order Creation") do
                         email: "bert2@gmail.com",
                         password: "password1",
                         password_confirmation: "password1",
-                        role: 0)
+                        role: 1)
 
       visit '/login'
         fill_in :email, with: @user.email
         fill_in :password, with: "password1"
+
       click_on "Log In"
       visit "/items/#{@paper.id}"
       click_on "Add To Cart"
@@ -46,10 +47,10 @@ RSpec.describe("Order Creation") do
       fill_in :zip, with: @user.zip
 
       click_button "Create Order"
-
       new_order = Order.last
 
-      expect(current_path).to eq("/orders/#{new_order.id}")
+      expect(current_path).to eq("/profile/orders")
+      visit "/orders/#{new_order.id}"
 
       within '.shipping-address' do
         expect(page).to have_content(new_order.name)

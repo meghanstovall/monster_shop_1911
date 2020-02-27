@@ -37,6 +37,12 @@ img{
   width:50px;
 }
 
+#welcome-image {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
+
 section[id*='review'] {
   background-color: #DCDCDC;
 }

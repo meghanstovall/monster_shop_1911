@@ -86,10 +86,7 @@ RSpec.describe 'As an merchant employee' do
       expect(page).to have_content("Total Cost of Merchant Items: $100")
 
       click_link 'Our store items'
-      expect(current_path).to eq("/merchant/#{@bike_shop.id}/items")
-
-
+      expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
     end
-
   end
 end
