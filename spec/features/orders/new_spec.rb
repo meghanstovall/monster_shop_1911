@@ -1,4 +1,6 @@
-RSpec.describe("New Order Page") do
+require "rails_helper"
+
+RSpec.describe "New Order Page", type: :feature do
   describe "When I check out from my cart" do
     before(:each) do
       @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)

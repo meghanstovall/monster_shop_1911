@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Site Navigation' do
-
+RSpec.describe 'Site Navigation', type: :feature do
   it 'shows this information from the nav bar' do
     visit '/'
 

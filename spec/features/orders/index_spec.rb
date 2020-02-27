@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "orders index page" do
+RSpec.describe "orders index page", type: :feature do
   before(:each) do
     @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Merchant, type: :model do
+RSpec.describe Merchant, type: :model do
   describe "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :address }
@@ -70,7 +70,7 @@ describe Merchant, type: :model do
                       password: 'password1',
                       password_confirmation: "password1",
                       role: 1)
-                      
+
       order_1 = tim.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       order_2 = tim.orders.create!(name: 'Brian', address: '123 Brian Ave', city: 'Denver', state: 'CO', zip: 17033)
       order_3 = tim.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17033)

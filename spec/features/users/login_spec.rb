@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "different users login" do
+RSpec.describe "different users login", type: :feature do
   before(:each) do
     @visitor_user = User.create!(name: "Damon",street_address: "2417 E. Curtis St. Denver, CO",
                               city: "denver",state: "CO",zip: "80206",email: "new_email0@gmail.com",password: "hamburger0", role: 0)
@@ -99,7 +99,7 @@ RSpec.describe "different users login" do
     fill_in :password, with: 'hamburger3'
     click_button 'Log In'
     expect(current_path).to eq('/admin/dashboard')
-    
+
     visit '/login'
     expect(current_path).to eq('/admin/dashboard')
     expect(page).to have_content("Already logged in as #{@admin_user.name}")

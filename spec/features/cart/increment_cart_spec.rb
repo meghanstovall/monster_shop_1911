@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart inrementation' do
+RSpec.describe 'Cart inrementation', type: :feature do
   before(:each) do
     @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @paper = @mike.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe("Order Creation") do
+RSpec.describe "Order Creation", type: :feature do
   describe "When I check out from my cart" do
     before(:each) do
       User.destroy_all

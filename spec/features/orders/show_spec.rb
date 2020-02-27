@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "orders index page" do
+RSpec.describe "orders index page", type: :feature do
   before(:each) do
     @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -83,7 +83,7 @@ RSpec.describe "orders index page" do
     fill_in :password, with: "hamburger2"
     click_button "Log In"
     expect(current_path).to eq("/merchant/dashboard")
-    
+
     merchant_order = @merchant_user.orders.create(name: @merchant_user.name, address: @merchant_user.street_address, city: @merchant_user.city, state: @merchant_user.state, zip: @merchant_user.zip)
 
     ItemOrder.create!(item: @tire, order: merchant_order, price: @tire.price, quantity: 2, status:1)

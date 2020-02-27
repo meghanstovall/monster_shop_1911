@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'as a regular user' do
+RSpec.describe 'as a regular user', type: :feature do
   before(:each) do
     @regular_user = User.create!(name: "Mike",
                                 street_address: "456 Logan St. Denver, CO",

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Admin user" do
+RSpec.describe "Admin user", type: :feature do
   before :each do
     @admin_user = User.create!(name: "John",
                               street_address: "123 Colfax St. Denver, CO",

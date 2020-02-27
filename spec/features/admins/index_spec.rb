@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "admin sees all orders" do
+RSpec.describe "admin sees all orders", type: :feature do
   before(:each) do
     @admin_user = User.create!(name: "John",street_address: "123 Colfax St. Denver, CO",
                               city: "denver",state: "CO",zip: "80206",email: "new_email3@gmail.com",password: "hamburger3", role: 3)

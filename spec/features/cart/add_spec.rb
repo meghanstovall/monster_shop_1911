@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart creation' do
+RSpec.describe 'Cart creation', type: :feature do
   describe 'When I visit an items show page' do
     before(:each) do
       @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)

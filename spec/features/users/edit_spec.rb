@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "user edit page", type: :features do
+RSpec.describe "user edit page", type: :feature do
   before(:each) do
     @user_1 = User.create!(
       name: "Peter Webber",

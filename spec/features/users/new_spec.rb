@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe 'new user', type: :features do
+RSpec.describe 'new user', type: :feature do
 	it 'I should be able to register as a new user' do
 		visit '/'
 		click_link 'Register'

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Item, type: :model do
+RSpec.describe Item, type: :model do
   describe "validations" do
     it { should validate_presence_of :name }
     it { should validate_presence_of :description }
@@ -109,7 +109,7 @@ describe Item, type: :model do
                       password: 'password1',
                       password_confirmation: "password1",
                       role: 1)
-                      
+
       @order_1 = @tim.orders.create(name: "Meg", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
       @order_2 = @tim.orders.create(name: "Mike", address: "123 Turing St", city: "Denver", state: "CO", zip: "80020")
 

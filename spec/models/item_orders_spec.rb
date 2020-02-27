@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ItemOrder, type: :model do
+RSpec.describe ItemOrder, type: :model do
   describe "validations" do
     it { should validate_presence_of :order_id }
     it { should validate_presence_of :item_id }

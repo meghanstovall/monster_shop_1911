@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Site Navigation', type: :features do
+RSpec.describe 'Site Navigation', type: :feature do
   describe 'As a Visitor' do
     it "I see a nav bar with links to all pages" do
       visit '/merchants'
