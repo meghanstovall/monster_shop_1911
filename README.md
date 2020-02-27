@@ -45,10 +45,11 @@ When registering, fill in all the fields with your information and remember, you
 
 2. Regular User - Great! Now you are a registered user! This user is registered and logged in to the application while performing their work; can place items in a cart and create an order!
 
-![image](https://user-images.githubusercontent.com/52808022/75280096-0c530880-57ca-11ea-89ef-332af1dedbe1.png)
+3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out). 
 
-3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
+However, they can only edit their merchant's items!
 
+![](https://media.giphy.com/media/MDxmWzXsjVuPN5xzaH/giphy.gif)
 
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
 
