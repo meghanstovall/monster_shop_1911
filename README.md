@@ -53,6 +53,8 @@ However, they can only edit their merchant's items!
 
 4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
 
+![](https://media.giphy.com/media/hun5l0YNuYfrB7s5Ng/giphy.gif)
+
 ### Rails
 * Create routes for namespaced routes
 * Use Sessions to store information about a user and implement login/logout functionality
