@@ -41,6 +41,8 @@ When registering, fill in all the fields with your information and remember, you
 
 ![Screen Shot 2020-02-25 at 12 20 09 PM](https://user-images.githubusercontent.com/52808022/75279721-538cc980-57c9-11ea-94b1-6030d19ec058.png)
 
+![](https://media.giphy.com/media/YPQHMVcdurJHilF5TW/giphy.gif)
+
 2. Regular User - Great! Now you are a registered user! This user is registered and logged in to the application while performing their work; can place items in a cart and create an order!
 
 ![image](https://user-images.githubusercontent.com/52808022/75280096-0c530880-57ca-11ea-89ef-332af1dedbe1.png)
