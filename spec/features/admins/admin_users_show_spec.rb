@@ -1,5 +1,6 @@
 require 'rails_helper'
-RSpec.describe "As an Admin user" do
+
+RSpec.describe "As an Admin user", type: :feature do
   before :each do
     @admin_user = User.create!(name: "John",
                               street_address: "123 Colfax St. Denver, CO",
@@ -49,6 +50,7 @@ RSpec.describe "As an Admin user" do
     click_button "Log In"
     visit "users/#{@regular_user.id}"
   end
+
   it "shows the users information and not a link to edit their profile" do
     expect(current_path).to eq("/admin/users/#{@regular_user.id}")
     expect(page).to have_content(@regular_user.name)
@@ -61,9 +63,3 @@ RSpec.describe "As an Admin user" do
     expect(page).to_not have_content('hamburger1')
   end
 end
-# User Story 54, Admin User Profile Page
-#
-# As an admin user
-# When I visit a user's profile page ("/admin/users/5")
-# I see the same information the user would see themselves
-# I do not see a link to edit their profile

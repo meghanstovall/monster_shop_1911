@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'Cart show', type: :feature do
   describe 'When I have added items to my cart' do
     before(:each) do
       @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -20,11 +20,9 @@ RSpec.describe 'Cart show' do
 
     it 'Theres a link to checkout' do
       visit "/cart"
-
       expect(page).to have_link("Checkout")
 
       click_on "Checkout"
-
       expect(current_path).to eq("/orders/new")
     end
 
@@ -63,6 +61,19 @@ RSpec.describe 'Cart show' do
       expect(current_path).to eq("/profile/orders")
       expect(page).to have_content("Your order has been placed!")
       expect(page).to have_link("Cart: 0")
+    end
+
+    it "cant see checkout button when an item is inactive" do
+      @lead = @mike.items.create(name: "Pencil Lead", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 50)
+
+      visit "/items/#{@lead.id}"
+      click_on "Add To Cart"
+
+      @lead.update(active?: false)
+
+      visit "/cart"
+      expect(page).to_not have_link("Checkout")
+      expect(page).to have_content("Can't checkout with inactive items")
     end
   end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin User' do
+RSpec.describe 'Admin User', type: :feature do
   before(:each) do
     @admin_user = User.create!(name: "John",
                               street_address: "123 Colfax St. Denver, CO",
@@ -157,7 +157,7 @@ RSpec.describe 'Admin User' do
     fill_in :inventory, with: @item1.inventory
 
     click_button('Update Item')
-    
+
     expect(page).to have_content('Hornswoggle is updated.')
 
     within "#item-#{@item2.id}" do
@@ -182,5 +182,4 @@ RSpec.describe 'Admin User' do
     click_button('Update Item')
     expect(page).to have_content("Price is not a number and Inventory must be greater than 0")
   end
-
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "As a Visitor" do
+RSpec.describe "As a Visitor", type: :feature do
   describe "When I visit an Item Show Page" do
     describe "and click on edit item" do
       it 'I can see the prepopulated fields of that item' do
@@ -80,7 +80,7 @@ RSpec.describe "As a Visitor" do
         fill_in :email, with: @merchant_user.email
         fill_in :password, with: 'hamburger2'
         click_button 'Log In'
-        
+
         visit "/items/#{@tire.id}"
 
         click_on "Edit Item"

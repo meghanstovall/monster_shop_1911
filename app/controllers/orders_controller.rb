@@ -1,4 +1,4 @@
-class OrdersController <ApplicationController
+class OrdersController < ApplicationController
 
   def new
   end
@@ -18,8 +18,6 @@ class OrdersController <ApplicationController
   def update
     update_order
   end
-
-
 
 
   private

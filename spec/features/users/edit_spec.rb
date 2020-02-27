@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "user edit page" do
+RSpec.describe "user edit page", type: :feature do
   before(:each) do
     @user_1 = User.create!(
       name: "Peter Webber",
@@ -26,7 +26,6 @@ describe "user edit page" do
   end
 
   it "can see flash message when trying to change email to one thats already in use" do
-
     visit "/login"
 
     fill_in :email, with: @user_1.email

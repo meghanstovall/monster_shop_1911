@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "As an Admin user" do
+RSpec.describe "As an Admin user", type: :feature do
   before :each do
     @admin_user = User.create!(name: "John",
                               street_address: "123 Colfax St. Denver, CO",
@@ -14,7 +14,6 @@ RSpec.describe "As an Admin user" do
     @mike = Merchant.create(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
     @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
 
-
     visit '/login'
     fill_in :email, with: @admin_user.email
     fill_in :password, with: @admin_user.password
@@ -24,7 +23,6 @@ RSpec.describe "As an Admin user" do
   end
 
   it "can see every merchant and the cities they operate in and if they are disbaled or not" do
-
     within"#merchant-#{@mike.id}" do
       expect(page).to have_link(@mike.name)
       expect(page).to have_content(@mike.city)

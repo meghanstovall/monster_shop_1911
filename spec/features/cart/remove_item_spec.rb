@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Cart show' do
+RSpec.describe 'Cart show', type: :feature do
   describe 'When I have added items to my cart' do
     describe 'and visit my cart path' do
       before(:each) do

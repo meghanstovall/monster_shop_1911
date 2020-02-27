@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "As an Admin user" do
+RSpec.describe "As an Admin user", type: :feature do
   before :each do
-
     @admin_user = User.create!(name: "John",
                               street_address: "123 Colfax St. Denver, CO",
                               city: "denver",
@@ -58,7 +57,6 @@ RSpec.describe "As an Admin user" do
   end
 
   it "can see users information from as an admin from the users link in the nav bar" do
-    
     click_link "All Users"
     expect(current_path).to eq("/admin/users")
 
@@ -88,7 +86,6 @@ RSpec.describe "As an Admin user" do
   end
 
   it "cannot see all users link if not admin" do
-
     click_link "Logout"
     visit '/login'
 

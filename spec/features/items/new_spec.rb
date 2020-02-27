@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Create Merchant Items" do
+RSpec.describe "Create Merchant Items", type: :feature do
   describe "When I visit the merchant items index page" do
     before(:each) do
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
@@ -17,7 +17,6 @@ RSpec.describe "Create Merchant Items" do
 
     it 'I see a link to add a new item for that merchant' do
       visit "/merchants/#{@brian.id}/items"
-
       expect(page).to have_link "Add New Item"
     end
 
