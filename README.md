@@ -33,7 +33,11 @@ You can now move in to the project and open it from your text editor.
 
 ## User Roles for Monster Shop
 
-1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. However, before you are able to checkout with any merchandise, you will need to register as a new user.
+1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. 
+
+![](https://media.giphy.com/media/KxzIoPXhASyOE7O7H2/giphy.gif)
+
+However, before you are able to checkout with any merchandise, you will need to register as a new user.
 
 ![Screen Shot 2020-02-25 at 12 15 31 PM](https://user-images.githubusercontent.com/52808022/75279470-e711ca80-57c8-11ea-9847-84aa1add641c.png)
 
