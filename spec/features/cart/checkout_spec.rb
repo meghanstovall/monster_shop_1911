@@ -17,7 +17,7 @@ RSpec.describe 'Cart show' do
       click_on "Add To Cart"
       @items_in_cart = [@paper,@tire,@pencil]
     end
-
+    
     it 'Theres a link to checkout' do
       visit "/cart"
 
@@ -63,6 +63,19 @@ RSpec.describe 'Cart show' do
       expect(current_path).to eq("/profile/orders")
       expect(page).to have_content("Your order has been placed!")
       expect(page).to have_link("Cart: 0")
+    end
+
+    it "cant see checkout button when an item is inactive" do
+      @lead = @mike.items.create(name: "Pencil Lead", description: "You can write on paper with it!", price: 2, image: "https://images-na.ssl-images-amazon.com/images/I/31BlVr01izL._SX425_.jpg", inventory: 50)
+
+      visit "/items/#{@lead.id}"
+      click_on "Add To Cart"
+
+      @lead.update(active?: false)
+
+      visit "/cart"
+      expect(page).to_not have_link("Checkout")
+      expect(page).to have_content("Can't checkout with inactive items")
     end
   end
 
