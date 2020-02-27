@@ -3,7 +3,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 
 ## Background and Description
 
-"Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
+"Monster Shop" is a fictitious e-commerce platform where users can register to be able to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
 
 ### Many-to-Many and One-to-Many Relationships
 * This project utilizes both one-to-many and many-to-many relationships, connecting multiple tables in our database for an easier user experience.
@@ -11,14 +11,14 @@ An online, e-commerce application for an easier and more convenient shopping exp
 ![image](https://user-images.githubusercontent.com/52808022/75277723-cc8a2200-57c5-11ea-89be-5e897431213d.png)
 
 ## Access
-Start shopping online, hassle-free, by visiting Website
+Start shopping online, hassle-free, by visiting ************************************
 
 ## Work on this project yourself!
 -To get started, please visit https://github.com/meghanstovall/monster_shop_1911 and clone this project to your local machine!
 
 -Once you are on the site, look for the green 'Clone or Download' button on the right side of the web page.
 
-![Screen Shot 2020-02-25 at 11 32 32 AM](https://user-images.githubusercontent.com/52808022/75276092-bf1f6880-57c2-11ea-977a-8f885322cd15.png)
+![](https://media.giphy.com/media/YmVGxGSfyUhC8nr7kD/giphy.gif)
 
 Next, copy the SSH Key after you have pressed the green 'Clone or Download' button.
 
@@ -29,26 +29,37 @@ this project to be. Type in 'git clone' and the paste the copied SSH key in to y
 
 ![Screen Shot 2020-02-25 at 11 48 02 AM](https://user-images.githubusercontent.com/52808022/75277652-a2386480-57c5-11ea-935e-af97b41d8bbb.png)
 
-You can now move in to the project and open it from your text editor.
+You can now move in to the project directory and open it from your text editor.
 
 ## User Roles for Monster Shop
 
-1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. However, before you are able to checkout with any merchandise, you will need to register as a new user.
+1. Visitor - this type of user is anonymously browsing our site and is not logged in. You will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. 
+
+![](https://media.giphy.com/media/KxzIoPXhASyOE7O7H2/giphy.gif)
+
+However, before you are able to checkout with any merchandise, you will need to register as a new user.
 
 ![Screen Shot 2020-02-25 at 12 15 31 PM](https://user-images.githubusercontent.com/52808022/75279470-e711ca80-57c8-11ea-9847-84aa1add641c.png)
 
 When registering, fill in all the fields with your information and remember, your email address must be unique!
 
-![Screen Shot 2020-02-25 at 12 20 09 PM](https://user-images.githubusercontent.com/52808022/75279721-538cc980-57c9-11ea-94b1-6030d19ec058.png)
+![](https://media.giphy.com/media/SSEGHmENrIiSSkdFHx/giphy.gif)
+
+Using a unique email allows us to register and view our profile page.
+
+![](https://media.giphy.com/media/YPQHMVcdurJHilF5TW/giphy.gif)
 
 2. Regular User - Great! Now you are a registered user! This user is registered and logged in to the application while performing their work; can place items in a cart and create an order!
 
-![image](https://user-images.githubusercontent.com/52808022/75280096-0c530880-57ca-11ea-89ef-332af1dedbe1.png)
+3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out). 
 
-3. Merchant Employee - this user works for a merchant. They can fulfill orders on behalf of their merchant. They also have the same permissions as a regular user (adding items to a cart and checking out)
+However, they can only edit their merchant's items!
 
+![](https://media.giphy.com/media/MDxmWzXsjVuPN5xzaH/giphy.gif)
 
-4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
+4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work! They are able to manipulate information that is restricted to others on the site.
+
+![](https://media.giphy.com/media/hun5l0YNuYfrB7s5Ng/giphy.gif)
 
 ### Rails
 * Create routes for namespaced routes

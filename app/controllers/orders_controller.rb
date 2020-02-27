@@ -55,8 +55,11 @@ class OrdersController < ApplicationController
   end
 
   def save_order_3(user, order)
-    redirect_to "/orders/#{order.id}" if user.role == 'regular'
-    redirect_to "/profile/orders" if user.role != 'regular'
+    if user.role != "regular"
+      redirect_to "/profile/orders"
+    else
+      redirect_to "/orders/#{order.id}"
+    end
   end
 
   def save_order_error
