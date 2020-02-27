@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   patch "/cart/:item_id/:quantity", to: "cart#edit_quantity"
 
   resources :orders, only: [:new, :create, :show, :update]
+  # get '/orders/:order_id', to: 'orders#show'
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
