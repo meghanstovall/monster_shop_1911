@@ -15,7 +15,7 @@
         <p>Name:
           <%=link_to "#{order.name}", "/admin/profile/#{order.user.id}" %></p>
         <p>Order ID:
-          <%= order.id %></p>
+          <%=link_to "#{order.id}", "/admin/orders/#{order.id}" %></p>
         <p>Date Created:
           <%= order.created_at %></p>
         <p><%= button_to "Ship this Order", "/admin/orders/#{order.id}", method: :patch %></p>
