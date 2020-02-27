@@ -18,7 +18,7 @@ Start shopping online, hassle-free, by visiting Website
 
 -Once you are on the site, look for the green 'Clone or Download' button on the right side of the web page.
 
-![Screen Shot 2020-02-25 at 11 32 32 AM](https://user-images.githubusercontent.com/52808022/75276092-bf1f6880-57c2-11ea-977a-8f885322cd15.png)
+![](https://media.giphy.com/media/YmVGxGSfyUhC8nr7kD/giphy.gif)
 
 Next, copy the SSH Key after you have pressed the green 'Clone or Download' button.
 
