@@ -16,7 +16,6 @@ RSpec.describe "orders index page" do
     fill_in :password, with: 'hamburger1'
     click_button 'Log In'
 
-
     visit "/items/#{@paper.id}"
     click_on "Add To Cart"
     visit "/items/#{@paper.id}"

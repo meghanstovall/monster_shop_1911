@@ -33,6 +33,7 @@ class Admin::ItemsController < Admin::BaseController
     @item = Item.find(params[:item_id])
   end
 
+
   private
 
   def item_params

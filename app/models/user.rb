@@ -7,13 +7,12 @@ class User < ApplicationRecord
   validates_presence_of :email
   validates_presence_of :password, require: true
   validates_presence_of :role
-  # attr_accessor :password_confirmation
 
   validates_uniqueness_of :email
 
   has_many :orders
 
-  belongs_to :merchant, optional: true 
+  belongs_to :merchant, optional: true
 
   enum role: %w(regular default merchant admin)
   has_secure_password

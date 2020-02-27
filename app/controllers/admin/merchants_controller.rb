@@ -8,7 +8,6 @@ class Admin::MerchantsController < Admin::BaseController
   end
 
 
-
   private
 
   def update_merch

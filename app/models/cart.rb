@@ -31,5 +31,4 @@ class Cart
       Item.find(item_id).price * quantity
     end
   end
-
 end

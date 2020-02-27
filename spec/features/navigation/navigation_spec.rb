@@ -3,21 +3,20 @@ require 'rails_helper'
 RSpec.describe 'Site Navigation' do
 
   it 'shows this information from the nav bar' do
+    visit '/'
 
-  visit '/'
-      within('#top-nav') do
-        expect(page).to have_link("Home")
-        expect(page).to have_link("All Merchants")
-        expect(page).to have_link("All Items")
-        expect(page).to have_link("Cart")
-        expect(page).to have_link("Login")
-        expect(page).to have_link("Register as New User")
-        expect(page).to have_content("Cart: 0")
+    within('#top-nav') do
+      expect(page).to have_link("Home")
+      expect(page).to have_link("All Merchants")
+      expect(page).to have_link("All Items")
+      expect(page).to have_link("Cart")
+      expect(page).to have_link("Login")
+      expect(page).to have_link("Register as New User")
+      expect(page).to have_content("Cart: 0")
     end
   end
 
   it "a default user sees different things in the nav bar than a visitor does" do
-
     visit '/'
   	click_link 'Register'
 
@@ -52,7 +51,6 @@ RSpec.describe 'Site Navigation' do
   end
 
   it "shows different things in the navbar for merchants" do
-
     merchant_1 = User.create!(
       name: "Aladdin",
       street_address: "456 Colorado Street",
@@ -61,8 +59,7 @@ RSpec.describe 'Site Navigation' do
       zip: 98765,
       email: "aladdin@gamil.com",
       password: "drowssap",
-      role: 2
-     )
+      role: 2)
 
     visit '/login'
 
@@ -78,7 +75,6 @@ RSpec.describe 'Site Navigation' do
   end
 
   it "shows different things in the navbar for admin" do
-
     admin_1 = User.create!(
       name: "Jaffar",
       street_address: "789 Palace Street",
@@ -87,8 +83,7 @@ RSpec.describe 'Site Navigation' do
       zip: 98345,
       email: "jaffar@gamil.com",
       password: "geniessuck",
-      role: 3
-     )
+      role: 3)
 
     visit '/login'
 
@@ -167,8 +162,7 @@ RSpec.describe 'Site Navigation' do
       zip: 98345,
       email: "jaffar@gamil.com",
       password: "geniessuck",
-      role: 2
-     )
+      role: 2)
 
     visit '/login'
 
@@ -190,8 +184,7 @@ RSpec.describe 'Site Navigation' do
       zip: 98345,
       email: "jaffar@gamil.com",
       password: "geniessuck",
-      role: 3
-     )
+      role: 3)
 
     visit '/login'
 
@@ -199,64 +192,10 @@ RSpec.describe 'Site Navigation' do
     fill_in :password, with: "geniessuck"
 
     click_button "Log In"
-    
+
     visit '/merchant/dashboard'
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
     visit '/cart'
     expect(page).to have_content("The page you were looking for doesn't exist (404)")
   end
 end
-
-# User Story 8, Merchant Navigation Restrictions
-#
-# As a merchant employee
-# When I try to access any path that begins with the following, then I see a 404 error:
-# - '/admin'
-
-# User Story 7, User Navigation Restrictions
-#
-# As a default user
-# When I try to access any path that begins with the following, then I see a 404 error:
-# - '/merchant'
-# - '/admin'
-
-# User Story 6, Visitor Navigation Restrictions
-#
-# As a visitor
-# When I try to access any path that begins with the following, then I see a 404 error:
-# - '/merchant'
-# - '/admin'
-# - '/profile'
-
-
-# User Story 5, Admin Navigation
-#
-# As an admin
-# I see the same links as a regular user
-# Plus the following links
-# - a link to my admin dashboard ("/admin")
-# - a link to see all users ("/admin/users")
-#
-# Minus the following links/info
-# - a link to my shopping cart ("/cart") or count of cart items
-
-# User Story 4, Merchant Navigation
-#
-# As a merchant employee
-# I see the same links as a regular user
-# Plus the following links:
-# - a link to my merchant dashboard ("/merchant")
-
-
-# User Story 3, User Navigation
-#
-# As a default user
-# I see the same links as a visitor
-# Plus the following links
-# - a link to my profile page ("/profile")
-# - a link to log out ("/logout")
-#
-# Minus the following links
-# - I do not see a link to log in or register
-#
-# I also see text that says "Logged in as Mike Dao" (or whatever my name is)

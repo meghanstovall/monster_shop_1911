@@ -17,9 +17,10 @@ RSpec.describe("New Order Page") do
                         role: 0)
 
       visit '/login'
-        fill_in :email, with: @user.email
-        fill_in :password, with: "password1"
+      fill_in :email, with: @user.email
+      fill_in :password, with: "password1"
       click_on "Log In"
+
       visit "/items/#{@paper.id}"
       click_on "Add To Cart"
       visit "/items/#{@paper.id}"
@@ -29,9 +30,9 @@ RSpec.describe("New Order Page") do
       visit "/items/#{@pencil.id}"
       click_on "Add To Cart"
     end
+
     it "I see all the information about my current cart" do
       visit "/cart"
-
       click_on "Checkout"
 
       within "#order-item-#{@tire.id}" do

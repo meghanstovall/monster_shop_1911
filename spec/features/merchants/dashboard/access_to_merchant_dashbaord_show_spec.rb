@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe 'As an merchant employee' do
   context 'I can access the merchant dashboard' do
     before :each do
-      User.destroy_all
-
       @bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @merchant_user = User.create!(name: "Ben", street_address: "891 Penn St. Denver, CO",
                                 city: "denver",state: "CO",zip: "80206",email: "new_email2@gmail.com",password: "hamburger2", role: 2)
@@ -29,7 +27,6 @@ RSpec.describe 'As an merchant employee' do
     end
 
     it "orders information with items I sell can be seen by & see a link to my items index" do
-
       click_link "Logout"
 
       mike = Merchant.create!(name: "Mike's Print Shop", address: '123 Paper Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -87,9 +84,6 @@ RSpec.describe 'As an merchant employee' do
 
       click_link 'Our store items'
       expect(current_path).to eq("/merchant/#{@bike_shop.id}/items")
-
-
     end
-
   end
 end

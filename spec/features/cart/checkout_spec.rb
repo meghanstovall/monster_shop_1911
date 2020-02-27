@@ -17,14 +17,12 @@ RSpec.describe 'Cart show' do
       click_on "Add To Cart"
       @items_in_cart = [@paper,@tire,@pencil]
     end
-    
+
     it 'Theres a link to checkout' do
       visit "/cart"
-
       expect(page).to have_link("Checkout")
 
       click_on "Checkout"
-
       expect(current_path).to eq("/orders/new")
     end
 

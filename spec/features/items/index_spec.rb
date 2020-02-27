@@ -12,8 +12,7 @@ RSpec.describe "Items Index Page" do
         zip: 98345,
         email: "jaffar@gamil.com",
         password: "geniessuck",
-        role: 0
-       )
+        role: 0)
 
       @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
       @tire_pump = @meg.items.create(name: "Tire Pump", description: "They'll love it!", price: 8, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
@@ -36,7 +35,6 @@ RSpec.describe "Items Index Page" do
     end
 
     it "I can see a list of all of the items "do
-
       visit '/items'
 
       within "#item-#{@tire.id}" do
@@ -71,7 +69,6 @@ RSpec.describe "Items Index Page" do
     end
 
     it "can see all items when visiting the show page" do
-
       visit "/items"
 
       within "#item-#{@tire.id}" do

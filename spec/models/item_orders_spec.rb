@@ -26,11 +26,11 @@ describe ItemOrder, type: :model do
                       password: 'password1',
                       password_confirmation: "password1",
                       role: 1)
+
       order_1 = tim.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
 
       expect(item_order_1.subtotal).to eq(200)
     end
   end
-
 end

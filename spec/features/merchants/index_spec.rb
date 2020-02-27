@@ -16,11 +16,9 @@ RSpec.describe 'merchant index page', type: :feature do
 
     it 'I can see a link to create a new merchant' do
       visit '/merchants'
-
       expect(page).to have_link("New Merchant")
 
       click_on "New Merchant"
-
       expect(current_path).to eq("/merchants/new")
     end
   end
@@ -39,10 +37,10 @@ RSpec.describe 'merchant index page', type: :feature do
         password: "password1",
         password_confirmation: "password1",
         role: 3)
-        @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
-        @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
-        @tire = @bike_shop.items.create(name: "Bike Tire", description: "High quality", price: 40, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
-        @seat = @bike_shop.items.create(name: "Bike Seat", description: "Very comfortable!", price: 20, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
+      @pull_toy = @dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
+      @dog_bone = @dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
+      @tire = @bike_shop.items.create(name: "Bike Tire", description: "High quality", price: 40, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
+      @seat = @bike_shop.items.create(name: "Bike Seat", description: "Very comfortable!", price: 20, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:true, inventory: 21)
     end
 
     it "as an admin, can disable a merchant" do

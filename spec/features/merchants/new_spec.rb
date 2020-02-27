@@ -29,6 +29,7 @@ RSpec.describe 'merchant new page', type: :feature do
       expect(new_merchant.state).to eq(state)
       expect(new_merchant.zip).to eq(zip)
     end
+    
     it 'I cant create a merchant if all fields are not filled in' do
       visit '/merchants/new'
 

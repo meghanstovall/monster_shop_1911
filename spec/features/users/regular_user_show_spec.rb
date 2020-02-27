@@ -65,5 +65,4 @@ RSpec.describe 'as a regular user' do
     expect(current_path).to eq("/profile/#{@regular_user.id}/edit_password")
     expect(page).to have_content("Passwords must match!")
   end
-
 end

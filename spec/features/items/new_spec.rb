@@ -17,7 +17,6 @@ RSpec.describe "Create Merchant Items" do
 
     it 'I see a link to add a new item for that merchant' do
       visit "/merchants/#{@brian.id}/items"
-
       expect(page).to have_link "Add New Item"
     end
 

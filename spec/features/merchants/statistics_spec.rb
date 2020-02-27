@@ -1,9 +1,3 @@
-# As a visitor
-# When I visit a merchant's show page
-# I see statistics for that merchant, including:
-# - count of items for that merchant
-# - average price of that merchant's items
-# - Distinct cities where my items have been ordered
 require 'rails_helper'
 
 RSpec.describe 'merchant show page', type: :feature do
@@ -25,6 +19,7 @@ RSpec.describe 'merchant show page', type: :feature do
                       password: 'password1',
                       password_confirmation: "password1",
                       role: 1)
+
       @order_1 = @tim.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
       @order_2 = @tim.orders.create!(name: 'Brian', address: '123 Zanti St', city: 'Denver', state: 'CO', zip: 80204)
       @order_3 = @tim.orders.create!(name: 'Mike', address: '123 Dao St', city: 'Denver', state: 'CO', zip: 80210)
@@ -49,8 +44,6 @@ RSpec.describe 'merchant show page', type: :feature do
           expect(page).to have_content("Denver")
         end
       end
-
-
     end
   end
 end

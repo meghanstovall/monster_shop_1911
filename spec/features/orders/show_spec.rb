@@ -14,7 +14,6 @@ RSpec.describe "orders index page" do
     @tire_order = ItemOrder.create!(item: @tire, order: @user_order, price: @tire.price, quantity: 7)
     @paper_order = ItemOrder.create!(item: @paper, order: @user_order, price: @paper.price, quantity: 4)
 
-
     visit '/'
     click_link 'Login'
     fill_in :email, with: @regular_user.email
@@ -79,10 +78,12 @@ RSpec.describe "orders index page" do
     visit '/'
     click_link "Login"
     expect(current_path).to eq('/login')
+
     fill_in :email, with: @merchant_user.email
     fill_in :password, with: "hamburger2"
     click_button "Log In"
     expect(current_path).to eq("/merchant/dashboard")
+    
     merchant_order = @merchant_user.orders.create(name: @merchant_user.name, address: @merchant_user.street_address, city: @merchant_user.city, state: @merchant_user.state, zip: @merchant_user.zip)
 
     ItemOrder.create!(item: @tire, order: merchant_order, price: @tire.price, quantity: 2, status:1)

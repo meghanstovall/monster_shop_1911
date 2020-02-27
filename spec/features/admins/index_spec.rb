@@ -88,7 +88,6 @@ RSpec.describe "admin sees all orders" do
   end
 
   scenario "admin can ship an order" do
-
     within "#packaged" do
       within "#packaged-order#{@order_3.id}" do
         expect(@order_3.status).to eq('packaged')
