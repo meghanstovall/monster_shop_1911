@@ -53,9 +53,12 @@ When registering, fill in all the fields with your information and remember, you
 ### Rails
 * Create routes for namespaced routes
 * Use Sessions to store information about a user and implement login/logout functionality
-* Use filters (e.g. `before_action`) in a Rails controller
-* Limit functionality to authorized users
 * Use BCrypt to hash user passwords before storing in the database
+* Use filters (e.g. `before_action`) in a Rails controller
+
+![image](https://user-images.githubusercontent.com/52808022/75459751-b2734f80-593d-11ea-9f36-6881e76ea8e0.png)
+
+* This functionality limits user access depending on their user role.
 
 ## Application Resources
 
