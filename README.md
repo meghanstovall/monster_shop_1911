@@ -3,7 +3,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 
 ## Background and Description
 
-"Monster Shop" is a fictitious e-commerce platform where users can register to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
+"Monster Shop" is a fictitious e-commerce platform where users can register to be able to place items into a shopping cart and 'check out'. Users who work for a merchant can mark their items as 'fulfilled'; the last merchant to mark items in an order as 'fulfilled' will automatically set the order status to "shipped". Each user role will have access to some or all CRUD functionality for application models.
 
 ### Many-to-Many and One-to-Many Relationships
 * This project utilizes both one-to-many and many-to-many relationships, connecting multiple tables in our database for an easier user experience.
@@ -11,7 +11,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 ![image](https://user-images.githubusercontent.com/52808022/75277723-cc8a2200-57c5-11ea-89be-5e897431213d.png)
 
 ## Access
-Start shopping online, hassle-free, by visiting Website
+Start shopping online, hassle-free, by visiting ************************************
 
 ## Work on this project yourself!
 -To get started, please visit https://github.com/meghanstovall/monster_shop_1911 and clone this project to your local machine!
@@ -29,11 +29,11 @@ this project to be. Type in 'git clone' and the paste the copied SSH key in to y
 
 ![Screen Shot 2020-02-25 at 11 48 02 AM](https://user-images.githubusercontent.com/52808022/75277652-a2386480-57c5-11ea-935e-af97b41d8bbb.png)
 
-You can now move in to the project and open it from your text editor.
+You can now move in to the project directory and open it from your text editor.
 
 ## User Roles for Monster Shop
 
-1. Visitor - this type of user is anonymously browsing our site and is not logged in. you will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. 
+1. Visitor - this type of user is anonymously browsing our site and is not logged in. You will be able to visit parts of the site and view both merchants and their products to see if there is anything that interests you. 
 
 ![](https://media.giphy.com/media/KxzIoPXhASyOE7O7H2/giphy.gif)
 
@@ -44,6 +44,8 @@ However, before you are able to checkout with any merchandise, you will need to 
 When registering, fill in all the fields with your information and remember, your email address must be unique!
 
 ![](https://media.giphy.com/media/SSEGHmENrIiSSkdFHx/giphy.gif)
+
+Using a unique email allows us to register and view our profile page.
 
 ![](https://media.giphy.com/media/YPQHMVcdurJHilF5TW/giphy.gif)
 
