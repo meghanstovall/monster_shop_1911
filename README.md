@@ -43,7 +43,7 @@ However, before you are able to checkout with any merchandise, you will need to 
 
 When registering, fill in all the fields with your information and remember, your email address must be unique!
 
-![Screen Shot 2020-02-25 at 12 20 09 PM](https://user-images.githubusercontent.com/52808022/75279721-538cc980-57c9-11ea-94b1-6030d19ec058.png)
+![](https://media.giphy.com/media/SSEGHmENrIiSSkdFHx/giphy.gif)
 
 ![](https://media.giphy.com/media/YPQHMVcdurJHilF5TW/giphy.gif)
 
@@ -55,7 +55,7 @@ However, they can only edit their merchant's items!
 
 ![](https://media.giphy.com/media/MDxmWzXsjVuPN5xzaH/giphy.gif)
 
-4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work!
+4. Admin User - a registered user who has "superuser" access to all areas of the application; user is logged in to perform their work! They are able to manipulate information that is restricted to others on the site.
 
 ![](https://media.giphy.com/media/hun5l0YNuYfrB7s5Ng/giphy.gif)
 
