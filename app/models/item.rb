@@ -49,11 +49,8 @@ class Item < ApplicationRecord
   end
 
   def fulfill_item(order)
-    item_orders.each do |item_order|
-      if item_order.order == order
-        item_order.update(status: "fulfilled")
-      end
-    end
+    orders = item_orders.where(order: order)
+    orders.update_all(status: "fulfilled")
   end
 
   def update_inventory(order)

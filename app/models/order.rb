@@ -16,23 +16,20 @@ class Order < ApplicationRecord
 
   def cancel_process
     update(status: 1)
+    item_orders.update(status: 0)
+
     item_orders.each do |item_order|
-      item_order.update(status: 0)
       item_order.item.update(inventory: (item_order.item.inventory + item_order.quantity))
     end
   end
 
   def fulfill
-    item_orders.each do |item_order|
-      item_order.update(status: 1)
-    end
+    item_orders.update(status: 1)
     update(status: 2)
   end
 
   def ship_and_fulfill
-    item_orders.each do |item_order|
-      item_order.update(status: 1)
-    end
+    item_orders.update(status: 1)
     update(status: 3)
   end
 
