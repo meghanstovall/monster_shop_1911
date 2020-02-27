@@ -3,7 +3,12 @@ class CartController < ApplicationController
 
   def add_item
     item = Item.find(params[:item_id])
-    add_item_process(item)
+    if !item.active?
+      flash[:notice] = "This item is inactive"
+      redirect_to "/items/#{item.id}"
+    else
+      add_item_process(item)
+    end
   end
 
   def show
@@ -73,5 +78,4 @@ class CartController < ApplicationController
     flash[:notice] = "Item has been removed from the cart"
     remove_item
   end
-
 end
