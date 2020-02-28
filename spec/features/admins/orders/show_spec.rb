@@ -54,6 +54,7 @@ RSpec.describe "Admin user", type: :feature do
     within "#item-#{@tire.id}" do
       click_link "Fulfill Item"
     end
+    
     expect(current_path).to eq("/admin/merchants/#{@meg.id}/orders/#{@user_order.id}")
     expect(page).to have_content("Status: fulfilled")
     expect(page).to have_content("You have fulfilled the order for #{@tire.name}")
