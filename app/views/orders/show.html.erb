@@ -104,7 +104,6 @@
       <%= @order.updated_at %></p>
   </section>
 
-
   <% if @order.status != 'shipped' %>
     <%= button_to 'Cancel', "/orders/#{@order.id}", method: :patch %>
   <% end %>
