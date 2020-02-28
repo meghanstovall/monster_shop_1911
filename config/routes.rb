@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   patch "/cart/:item_id/:quantity", to: "cart#edit_quantity"
 
   resources :orders, only: [:new, :create, :show, :update]
-  # get '/orders/:order_id', to: 'orders#show'
 
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
@@ -36,7 +35,6 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/', to: 'sessions#destroy'
-
 
   namespace :merchant do
   #only merchant users will be able to reach this resource
