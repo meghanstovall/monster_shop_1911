@@ -11,7 +11,7 @@ An online, e-commerce application for an easier and more convenient shopping exp
 ![image](https://user-images.githubusercontent.com/52808022/75277723-cc8a2200-57c5-11ea-89be-5e897431213d.png)
 
 ## Access
-Start shopping online, hassle-free, by visiting ************************************
+Start shopping online, hassle-free, by visiting https://pacific-falls-62721.herokuapp.com/
 
 ## Work on this project yourself!
 -To get started, please visit https://github.com/meghanstovall/monster_shop_1911 and clone this project to your local machine!
