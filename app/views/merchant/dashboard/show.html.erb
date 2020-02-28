@@ -4,10 +4,11 @@
     <br>
     <br>
     <%= current_user.merchant.address%></h3>
-    <h4> <%= current_user.merchant.city%>,</h4>
-    <h4> <%= current_user.merchant.state%>,
+  <h4>
+    <%= current_user.merchant.city%>,</h4>
+  <h4>
+    <%= current_user.merchant.state%>,
     <%= current_user.merchant.zip%></h4>
-
 
   <% if current_user.merchant.item_orders != [] %>
     <% current_user.merchant.item_orders.each do |item_order| %>

@@ -6,11 +6,13 @@
 
 <ul><%= link_to "All #{@merchant.name} Items", "/merchants/#{@merchant.id}/items" %></ul>
 <% if current_user %>
-<ul><% if current_user.merchant_id == @merchant.id || current_admin %></ul>
-<ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
-<ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete if @merchant.no_orders?%>
+  <ul>
+    <% if current_user.merchant_id == @merchant.id || current_admin %>
+    </ul>
+    <ul><%= link_to "Update Merchant", "/merchants/#{@merchant.id}/edit" %></ul>
+    <ul><%= link_to "Delete Merchant", "/merchants/#{@merchant.id}", method: :delete if @merchant.no_orders?%>
+    <% end %>
   <% end %>
-<% end %>
 </ul>
 <section class="merchant-stats">
   <h2>Number of Items:
