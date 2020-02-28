@@ -59,6 +59,7 @@ RSpec.describe "As an Admin user", type: :feature do
     expect(page).to have_content(@regular_user.state)
     expect(page).to have_content(@regular_user.zip)
     expect(page).to have_content(@regular_user.email)
+    
     expect(page).to_not have_link('Edit Profile')
     expect(page).to_not have_content('hamburger1')
   end
