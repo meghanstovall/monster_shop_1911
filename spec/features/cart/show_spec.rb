@@ -22,7 +22,9 @@ RSpec.describe 'Cart show', type: :feature do
       it 'I can empty my cart by clicking a link' do
         visit '/cart'
         expect(page).to have_link("Empty Cart")
+
         click_on "Empty Cart"
+        
         expect(current_path).to eq("/cart")
         expect(page).to_not have_css(".cart-items")
         expect(page).to have_content("Cart is currently empty")
