@@ -86,5 +86,10 @@ RSpec.describe 'As an merchant employee', type: :feature do
 
       expect(current_path).to eq("/merchants/#{@bike_shop.id}/items")
     end
+
+    it "has link to go to discounts" do
+      click_link "Manage Discounts"
+      expect(current_path).to eq("/merchant/dashboard/#{@bike_shop.id}/discounts")
+    end
   end
 end
