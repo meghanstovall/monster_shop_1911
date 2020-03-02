@@ -12,7 +12,7 @@ RSpec.describe "as a user", type: :feature do
     @chain = @bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 100)
 
     @order_1 = @user.orders.create!(name: "Sally", address: "111 Drive", city: "Broomfield", state: "CO", zip: 80020)
-    # @order_1.item_orders.create!(item: @bone, price: @bone.price, quantity: 10)
+    @order_1.item_orders.create!(item: @bone, price: @bone.price, quantity: 10)
     @order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 10)
 
     @order_2 = @user.orders.create!(name: "Sally", address: "111 Drive", city: "Broomfield", state: "CO", zip: 80020)
@@ -23,6 +23,10 @@ RSpec.describe "as a user", type: :feature do
     @discount_1 = @bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 10)
     @discount_2 = @bike_shop.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 20)
     @discount_3 = @dog_shop.discounts.create!(name: "15% Discount", percent_off: 15, min_quantity: 30)
+
+    @item_discount_1 = ItemDiscount.create(item: @chain, discount: @discount_1)
+    @item_discount_2 = ItemDiscount.create(item: @chain, discount: @discount_2)
+    @item_discount_3 = ItemDiscount.create(item: @bone, discount: @discount_3)
 
     visit '/'
     click_link 'Login'
