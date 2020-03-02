@@ -20,9 +20,9 @@ RSpec.describe "as a merchant", type: :feature do
 
     @order_3 = @user.orders.create!(name: "Sally", address: "111 Drive", city: "Broomfield", state: "CO", zip: 80020)
 
-    @discount_1 = @bike_shop.discounts.create!(name: "1% Discount", percent_off: 1, min_quantity: 10)
-    @discount_2 = @bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 20)
-    @discount_3 = @dog_shop.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 30)
+    @discount_1 = @bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 10)
+    @discount_2 = @bike_shop.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 20)
+    @discount_3 = @dog_shop.discounts.create!(name: "15% Discount", percent_off: 15, min_quantity: 30)
 
     visit '/'
     click_link 'Login'
@@ -38,19 +38,46 @@ RSpec.describe "as a merchant", type: :feature do
 
   it "will only display a merchants discounts" do
     within "#discount-#{@discount_1.id}" do
-      expect(page).to have_link("#{@discount_1.name}")
-      expect(page).to have_content("Percent Off: #{@discount_1.percent_off}")
+      expect(page).to have_link("#{@discount_1.id}")
+      expect(page).to have_content("Name: #{@discount_1.name}")
+      expect(page).to have_content("Percent Off: #{@discount_1.percent_off}%")
       expect(page).to have_content("Minimum Quantity: #{@discount_1.min_quantity}")
-      has_link? "Edit"
     end
 
     within "#discount-#{@discount_2.id}" do
-      expect(page).to have_link("#{@discount_2.name}")
-      expect(page).to have_content("Percent Off: #{@discount_2.percent_off}")
+      expect(page).to have_link("#{@discount_2.id}")
+      expect(page).to have_content("Name: #{@discount_2.name}")
+      expect(page).to have_content("Percent Off: #{@discount_2.percent_off}%")
       expect(page).to have_content("Minimum Quantity: #{@discount_2.min_quantity}")
-      has_link? "Edit"
     end
 
     expect(page).to_not have_content(@discount_3.name)
+  end
+
+  it "can click a discounts id and go to that show page" do
+    within "#discount-#{@discount_1.id}" do
+      click_link "#{@discount_1.id}"
+      expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}")
+    end
+    expect(page).to have_content(@discount_1.name)
+    expect(page).to have_content("Percent Off: #{@discount_1.percent_off}%")
+    expect(page).to have_content("Minimum Quantity: #{@discount_1.min_quantity}")
+    expect(page).to have_content("Merchant: #{@bike_shop.name}")
+    expect(page).to_not have_content(@discount_2.name)
+    has_link? "Edit"
+
+    visit "/merchant/dashboard"
+    click_link "Manage Discounts"
+
+    within "#discount-#{@discount_2.id}" do
+      click_link "#{@discount_2.id}"
+      expect(current_path).to eq("/merchant/discounts/#{@discount_2.id}")
+    end
+    expect(page).to have_content(@discount_2.name)
+    expect(page).to have_content("Percent Off: #{@discount_2.percent_off}%")
+    expect(page).to have_content("Minimum Quantity: #{@discount_2.min_quantity}")
+    expect(page).to have_content("Merchant: #{@bike_shop.name}")
+    expect(page).to_not have_content(@discount_1.name)
+    has_link? "Edit"
   end
 end
