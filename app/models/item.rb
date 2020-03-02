@@ -4,6 +4,9 @@ class Item < ApplicationRecord
   has_many :item_orders
   has_many :orders, through: :item_orders
 
+  has_many :item_discounts
+  has_many :discounts, through: :item_discounts
+
   validates_presence_of :name,
                         :description,
                         :price,
