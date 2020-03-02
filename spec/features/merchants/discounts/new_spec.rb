@@ -41,16 +41,22 @@ RSpec.describe "as a merchant", type: :feature do
     expect(current_path).to eq("/merchant/#{@bike_shop.id}/discounts/new")
   end
 
-  it "can creat a new discount" do
+  it "can create a new discount and assign it to an item" do
     click_link "New Discount"
 
     fill_in :name, with: "30% Discount"
     fill_in :percent_off, with: 30
     fill_in :min_quantity, with: 100
+    within "#item-#{@chain.id}" do
+      check :discount_items_
+    end
 
     click_button "Create Discount"
 
     discount = Discount.last
+    item_disount = ItemDiscount.last
+    expect(item_disount.discount).to eq(discount)
+    expect(item_disount.item).to eq(@chain)
 
     expect(current_path).to eq("/merchant/discounts")
     expect(page).to have_content("Discount created successfully!")
@@ -67,6 +73,17 @@ RSpec.describe "as a merchant", type: :feature do
     fill_in :min_quantity, with: 100
 
     click_button "Create Discount"
-    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Form not submitted: Required information missing.")
+  end
+
+  it "cant create discount without checking an item" do
+    click_link "New Discount"
+
+    fill_in :name, with: "30% Discount"
+    fill_in :percent_off, with: 30
+    fill_in :min_quantity, with: 100
+
+    click_button "Create Discount"
+    expect(page).to have_content("Form not submitted: Required information missing.")
   end
 end
