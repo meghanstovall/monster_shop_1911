@@ -41,6 +41,10 @@ RSpec.describe "as a merchant", type: :feature do
       click_link "#{@discount_1.id}"
       expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}")
     end
+    expect(page).to have_content(@discount_1.merchant.name)
+    expect(page).to have_content("Name: #{@discount_1.name}")
+    expect(page).to have_content("Percent Off: #{@discount_1.percent_off}")
+    expect(page).to have_content("Minimum Quantity: #{@discount_1.min_quantity}")
 
     click_link "Edit"
     expect(current_path).to eq("/merchant/discounts/#{@discount_1.id}/edit")
