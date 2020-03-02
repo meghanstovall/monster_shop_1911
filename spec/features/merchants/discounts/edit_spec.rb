@@ -49,6 +49,7 @@ RSpec.describe "as a merchant", type: :feature do
 
     click_button "Update"
     expect(current_path).to eq("/merchant/discounts")
+    expect(page).to have_content("Discount has been updated!")
     expect(page).to have_content("Name: 20% Discount")
     expect(page).to have_content("Percent Off: 20%")
     expect(page).to have_content("Minimum Quantity: 50")
