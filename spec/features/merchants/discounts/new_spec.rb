@@ -36,38 +36,37 @@ RSpec.describe "as a merchant", type: :feature do
     click_link "Manage Discounts"
   end
 
-  it "can edit a discount" do
-    within "#discount-#{@discount_2.id}" do
-      click_link "#{@discount_2.id}"
-      expect(current_path).to eq("/merchant/discounts/#{@discount_2.id}")
-    end
-    click_link "Edit"
-
-    fill_in :name, with: "20% Discount"
-    fill_in :percent_off, with: 20
-    fill_in :min_quantity, with: 50
-
-    click_button "Update"
-    expect(current_path).to eq("/merchant/discounts")
-    expect(page).to have_content("Discount has been updated!")
-    expect(page).to have_content("Name: 20% Discount")
-    expect(page).to have_content("Percent Off: 20%")
-    expect(page).to have_content("Minimum Quantity: 50")
+  it "can click link from index page and taken to a form for new discount" do
+    click_link "New Discount"
+    expect(current_path).to eq("/merchant/#{@bike_shop.id}/discounts/new")
   end
 
-  it "can't leave a field blank when editing" do
-    within "#discount-#{@discount_2.id}" do
-      click_link "#{@discount_2.id}"
-      expect(current_path).to eq("/merchant/discounts/#{@discount_2.id}")
-    end
-    click_link "Edit"
+  it "can creat a new discount" do
+    click_link "New Discount"
+
+    fill_in :name, with: "30% Discount"
+    fill_in :percent_off, with: 30
+    fill_in :min_quantity, with: 100
+
+    click_button "Create Discount"
+
+    discount = Discount.last
+
+    expect(current_path).to eq("/merchant/discounts")
+    expect(page).to have_content("Discount created successfully!")
+    expect(page).to have_content(discount.name)
+    expect(page).to have_content(discount.percent_off)
+    expect(page).to have_content(discount.min_quantity)
+  end
+
+  it "cant create discount without all fields filled in " do
+    click_link "New Discount"
 
     fill_in :name, with: ""
-    fill_in :percent_off, with: 20
-    fill_in :min_quantity, with: 50
+    fill_in :percent_off, with: 30
+    fill_in :min_quantity, with: 100
 
-    click_button "Update"
-    expect(current_path).to eq("/merchant/discounts/#{@discount_2.id}")
+    click_button "Create Discount"
     expect(page).to have_content("Name can't be blank")
   end
 end

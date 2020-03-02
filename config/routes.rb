@@ -39,11 +39,15 @@ Rails.application.routes.draw do
   namespace :merchant do
   #only merchant users will be able to reach this resource
     get '/dashboard', to: "dashboard#show"
+    get '/:merchant_id/dashboard', to: "dashboard#show"
+
     get '/discounts', to: "discounts#index"
     get '/discounts/:discount_id', to: "discounts#show"
     get '/discounts/:discount_id/edit', to: "discounts#edit"
     patch '/discounts/:discount_id', to: "discounts#update"
-    get '/:merchant_id/dashboard', to: "dashboard#show"
+    get '/:merchant_id/discounts/new', to: "discounts#new"
+    post '/:merchant_id/discounts', to: "discounts#create"
+
     get '/:merchant_id/items', to: "items#index"
   end
 
