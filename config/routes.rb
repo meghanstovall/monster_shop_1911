@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     patch '/discounts/:discount_id', to: "discounts#update"
     get '/:merchant_id/discounts/new', to: "discounts#new"
     post '/:merchant_id/discounts', to: "discounts#create"
+    delete '/discounts/:discount_id', to: "discounts#destroy"
 
     get '/:merchant_id/items', to: "items#index"
   end
