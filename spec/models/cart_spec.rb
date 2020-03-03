@@ -20,8 +20,10 @@ RSpec.describe Cart, type: :model do
 
       discount_1 = bike_shop.discounts.create!(name: "5% Discount", percent_off: 5, min_quantity: 10)
       discount_2 = bike_shop.discounts.create!(name: "10% Discount", percent_off: 10, min_quantity: 30)
+      discount_3 = bike_shop.discounts.create!(name: "10% Discount", percent_off: 20, min_quantity: 50)
       item_discount = ItemDiscount.create(item: chain, discount: discount_1)
       item_discount = ItemDiscount.create(item: chain, discount: discount_2)
+      item_discount = ItemDiscount.create(item: chain, discount: discount_3)
 
       cart = Cart.new({chain.id.to_s => 30})
 

@@ -31,15 +31,8 @@ class Cart
   end
 
   def highest_discount(item)
-    ordered_discounts = item.discounts.order(min_quantity: :desc)
-    new_discount = nil
-    ordered_discounts.each do |discount|
-      if @contents[item.id.to_s] >= discount.min_quantity
-        new_discount = discount
-        break
-      end
-    end
-    new_discount
+    discounts = item.discounts.where("#{@contents[item.id.to_s]} >= discounts.min_quantity")
+    discounts.order(percent_off: :desc).limit(1).first
   end
 
   def discounted(item)
