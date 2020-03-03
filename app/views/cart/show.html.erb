@@ -38,7 +38,9 @@
             </center>
           </td>
           <td>
-            <p><%=number_to_currency(cart.subtotal(item))%></p>
+            <section id="subtotal-<%= item.id %>">
+              <p><%=number_to_currency(cart.subtotal(item))%></p>
+            </section>
           </td>
         </tr>
       <% end %>
