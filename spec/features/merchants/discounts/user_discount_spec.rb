@@ -41,13 +41,37 @@ RSpec.describe "as a user", type: :feature do
   end
 
   it "can get a discount on items" do
-    5.times do
+    10.times do
       click_link "#{@chain.name}"
       click_button "Add To Cart"
     end
-    click_link "Cart: 5"
-    expect(page).to have_content("#{@discount_1.name} applied!")
-    expect(page).to have_content("Total: $190.00")
-    # save_and_open_page
+    click_link "Cart: 10"
+    expect(page).to have_content("$380.00")
+    expect(page).to have_content("Total: $380.00")
   end
+
+  it "can get the higher discount of the two on an item" do
+    20.times do
+      click_link "#{@chain.name}"
+      click_button "Add To Cart"
+    end
+    click_link "Cart: 20"
+    expect(page).to have_content("$720.00")
+    expect(page).to have_content("Total: $720.00")
+  end
+
+  # it "can get the a discount for two different items" do
+  #   10.times do
+  #     click_link "#{@chain.name}"
+  #     click_button "Add To Cart"
+  #   end
+  #
+  #   30.times do
+  #     click_link "#{@bone.name}"
+  #     click_button "Add To Cart"
+  #   end
+  #   click_link "Cart: 40"
+  #   expect(page).to have_content("$720.00")
+  #   expect(page).to have_content("Total: $720.00")
+  # end
 end
