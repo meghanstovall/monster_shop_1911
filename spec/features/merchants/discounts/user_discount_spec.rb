@@ -45,8 +45,11 @@ RSpec.describe "as a user", type: :feature do
       click_link "#{@chain.name}"
       click_button "Add To Cart"
     end
+
     click_link "Cart: 10"
-    expect(page).to have_content("$380.00")
+    within "#subtotal-#{@chain.id}" do
+      expect(page).to have_content("$380.00")
+    end
     expect(page).to have_content("Total: $380.00")
   end
 
@@ -55,23 +58,55 @@ RSpec.describe "as a user", type: :feature do
       click_link "#{@chain.name}"
       click_button "Add To Cart"
     end
+
     click_link "Cart: 20"
-    expect(page).to have_content("$720.00")
+    within "#subtotal-#{@chain.id}" do
+      expect(page).to have_content("$720.00")
+    end
     expect(page).to have_content("Total: $720.00")
   end
 
-  # it "can get the a discount for two different items" do
-  #   10.times do
-  #     click_link "#{@chain.name}"
-  #     click_button "Add To Cart"
-  #   end
-  #
-  #   30.times do
-  #     click_link "#{@bone.name}"
-  #     click_button "Add To Cart"
-  #   end
-  #   click_link "Cart: 40"
-  #   expect(page).to have_content("$720.00")
-  #   expect(page).to have_content("Total: $720.00")
-  # end
+  it "can get the a discount for two different items" do
+    10.times do
+      click_link "#{@chain.name}"
+      click_button "Add To Cart"
+    end
+
+    30.times do
+      click_link "#{@bone.name}"
+      click_button "Add To Cart"
+    end
+
+    click_link "Cart: 40"
+    within "#subtotal-#{@chain.id}" do
+      expect(page).to have_content("$380.00")
+    end
+
+    within "#subtotal-#{@bone.id}" do
+      expect(page).to have_content("$204.00")
+    end
+    expect(page).to have_content("Total: $584.00")
+  end
+
+  it "can get a discount for one of two items" do
+    10.times do
+      click_link "#{@chain.name}"
+      click_button "Add To Cart"
+    end
+
+    10.times do
+      click_link "#{@bone.name}"
+      click_button "Add To Cart"
+    end
+
+    click_link "Cart: 20"
+    within "#subtotal-#{@chain.id}" do
+      expect(page).to have_content("$380.00")
+    end
+
+    within "#subtotal-#{@bone.id}" do
+      expect(page).to have_content("$80.00")
+    end
+    expect(page).to have_content("Total: $460.00")
+  end
 end

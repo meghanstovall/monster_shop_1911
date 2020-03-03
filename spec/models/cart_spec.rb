@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
   describe "methods" do
-    it "#discounted_subtotal" do
+    it "#discounted" do
       bike_shop = Merchant.create!(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Richmond', state: 'VA', zip: 23137)
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 40, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 100)
 
