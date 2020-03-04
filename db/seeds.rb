@@ -34,9 +34,17 @@ downhill_rims = bike_shop.items.create(name: "STANS flow s1  29er", description:
 xx1 = bike_shop.items.create(name: "XX1 eagle cassette", description: "Best around", price: 700, image: "https://content.competitivecyclist.com/images/items/1200/SRM/SRM009X/GD.jpg", inventory: 4)
 cranks = bike_shop.items.create(name: "carbon cranks ", description: "LIGHT", price: 300, image: "https://www.sefiles.net/images/library/zoom/sram-x7-crankset-44-32-22-9-speed-copy-184997-1.jpg", inventory: 4)
 
+# dog shop discounts
+five_percent = dog_shop.discounts.create(name: "5% Discount", percent_off: 5, min_quantity: 10)
+ten_percent = dog_shop.discounts.create(name: "10% Discount", percent_off: 10, min_quantity: 20)
+item_discount_1 = ItemDiscount.create(item: pull_toy, discount: five_percent)
+item_discount_2 = ItemDiscount.create(item: pull_toy, discount: ten_percent)
+
 # bike shop discounts
 five_percent = bike_shop.discounts.create(name: "5% Discount", percent_off: 5, min_quantity: 10)
 ten_percent = bike_shop.discounts.create(name: "10% Discount", percent_off: 10, min_quantity: 20)
+item_discount_1 = ItemDiscount.create(item: tire, discount: five_percent)
+item_discount_2 = ItemDiscount.create(item: tire, discount: ten_percent)
 
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
