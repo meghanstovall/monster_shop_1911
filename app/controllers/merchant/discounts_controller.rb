@@ -30,13 +30,13 @@ class Merchant::DiscountsController < Merchant::BaseController
   def create
     merchant = Merchant.find(params[:merchant_id])
     discount = merchant.discounts.create(discount_params)
-    if params[:discount_items] == nil || !discount.save
+    if params[:discount_items].empty? || !discount.save
       flash[:notice] = "Form not submitted: Required information missing."
       render :new
     else
       items = Item.find(params[:discount_items])
       discount.items << items
-      
+
       flash[:notice] = "Discount created successfully!"
       redirect_to "/merchant/discounts"
     end
