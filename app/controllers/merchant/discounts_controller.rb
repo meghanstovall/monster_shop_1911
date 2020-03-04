@@ -14,12 +14,12 @@ class Merchant::DiscountsController < Merchant::BaseController
   def update
     @discount = Discount.find(params[:discount_id])
     @discount.update(discount_params)
-    if @discount.save
-      flash[:notice] = "Discount has been updated!"
-      redirect_to "/merchant/discounts"
-    else
+    if !@discount.save || @discount.percent_off > 100
       flash[:notice] = @discount.errors.full_messages.to_sentence
       render :edit
+    else
+      flash[:notice] = "Discount has been updated!"
+      redirect_to "/merchant/discounts"
     end
   end
 
@@ -30,7 +30,7 @@ class Merchant::DiscountsController < Merchant::BaseController
   def create
     merchant = Merchant.find(params[:merchant_id])
     discount = merchant.discounts.create(discount_params)
-    if params[:discount_items].empty? || !discount.save
+    if params[:discount_items] == nil || !discount.save || discount.percent_off > 100
       flash[:notice] = "Form not submitted: Required information missing."
       render :new
     else
